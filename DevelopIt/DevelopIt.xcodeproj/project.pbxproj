@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -54,7 +54,6 @@
 				C97125ADEA163B4D612ADA26 /* Pods-DevelopIt.debug.xcconfig */,
 				6D4DDDD89E4FCA900DA5593B /* Pods-DevelopIt.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -79,14 +78,62 @@
 		EC5A7F7D22BDC35A00C22DA0 /* DevelopIt */ = {
 			isa = PBXGroup;
 			children = (
-				EC5A7F7E22BDC35A00C22DA0 /* AppDelegate.swift */,
-				EC5A7F8022BDC35A00C22DA0 /* ViewController.swift */,
-				EC5A7F8222BDC35A00C22DA0 /* Main.storyboard */,
-				EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */,
-				EC5A7F8722BDC35F00C22DA0 /* LaunchScreen.storyboard */,
-				EC5A7F8A22BDC35F00C22DA0 /* Info.plist */,
+				ECB341B622BDE04B00693597 /* Extensions+Utilities */,
+				ECB341B522BDE03B00693597 /* Model */,
+				ECB341B422BDE01E00693597 /* Model Controllers */,
+				ECB341B322BDE01300693597 /* View Controllers */,
+				ECB341B222BDDFFC00693597 /* Storyboards */,
+				ECB341B122BDDFED00693597 /* Resources */,
 			);
 			path = DevelopIt;
+			sourceTree = "<group>";
+		};
+		ECB341B122BDDFED00693597 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EC5A7F7E22BDC35A00C22DA0 /* AppDelegate.swift */,
+				EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */,
+				EC5A7F8A22BDC35F00C22DA0 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ECB341B222BDDFFC00693597 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				EC5A7F8222BDC35A00C22DA0 /* Main.storyboard */,
+				EC5A7F8722BDC35F00C22DA0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		ECB341B322BDE01300693597 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EC5A7F8022BDC35A00C22DA0 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		ECB341B422BDE01E00693597 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		ECB341B522BDE03B00693597 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ECB341B622BDE04B00693597 /* Extensions+Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Extensions+Utilities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,7 +401,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = DevelopIt/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DevelopIt/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -373,7 +420,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = DevelopIt/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DevelopIt/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
