@@ -1,0 +1,16 @@
+PODS:
+  - AsyncTimer (2.2.0)
+
+DEPENDENCIES:
+  - AsyncTimer (~> 2.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AsyncTimer
+
+SPEC CHECKSUMS:
+  AsyncTimer: d8512868a7f4de79f58b6962d590f04b8dab5f7a
+
+PODFILE CHECKSUM: 062541b52774a8d476110c261efcd74652cd3303
+
+COCOAPODS: 1.7.1
