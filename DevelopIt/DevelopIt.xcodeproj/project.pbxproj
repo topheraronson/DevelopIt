@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		69EC9C871C960F7010267C6A /* Pods_DevelopIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A6B43870547548B0E7B628 /* Pods_DevelopIt.framework */; };
+		EC3595D822C0116C00BD11DF /* DevelopItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3595D722C0116C00BD11DF /* DevelopItTests.swift */; };
 		EC5A7F7F22BDC35A00C22DA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A7F7E22BDC35A00C22DA0 /* AppDelegate.swift */; };
 		EC5A7F8122BDC35A00C22DA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A7F8022BDC35A00C22DA0 /* ViewController.swift */; };
 		EC5A7F8422BDC35A00C22DA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8222BDC35A00C22DA0 /* Main.storyboard */; };
@@ -16,10 +17,23 @@
 		ECB341B822BDE1DB00693597 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECB341B722BDE1DB00693597 /* Pacifico.ttf */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EC3595DA22C0116C00BD11DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC5A7F7322BDC35A00C22DA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC5A7F7A22BDC35A00C22DA0;
+			remoteInfo = DevelopIt;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		16A6B43870547548B0E7B628 /* Pods_DevelopIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevelopIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D4DDDD89E4FCA900DA5593B /* Pods-DevelopIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevelopIt.release.xcconfig"; path = "Target Support Files/Pods-DevelopIt/Pods-DevelopIt.release.xcconfig"; sourceTree = "<group>"; };
 		C97125ADEA163B4D612ADA26 /* Pods-DevelopIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevelopIt.debug.xcconfig"; path = "Target Support Files/Pods-DevelopIt/Pods-DevelopIt.debug.xcconfig"; sourceTree = "<group>"; };
+		EC3595D522C0116B00BD11DF /* DevelopItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DevelopItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC3595D722C0116C00BD11DF /* DevelopItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopItTests.swift; sourceTree = "<group>"; };
+		EC3595D922C0116C00BD11DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC5A7F7B22BDC35A00C22DA0 /* DevelopIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevelopIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5A7F7E22BDC35A00C22DA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC5A7F8022BDC35A00C22DA0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +45,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EC3595D222C0116B00BD11DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC5A7F7822BDC35A00C22DA0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,10 +80,20 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EC3595D622C0116C00BD11DF /* DevelopItTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC3595D722C0116C00BD11DF /* DevelopItTests.swift */,
+				EC3595D922C0116C00BD11DF /* Info.plist */,
+			);
+			path = DevelopItTests;
+			sourceTree = "<group>";
+		};
 		EC5A7F7222BDC35A00C22DA0 = {
 			isa = PBXGroup;
 			children = (
 				EC5A7F7D22BDC35A00C22DA0 /* DevelopIt */,
+				EC3595D622C0116C00BD11DF /* DevelopItTests */,
 				EC5A7F7C22BDC35A00C22DA0 /* Products */,
 				9BB7265F44D49D01EE9254EF /* Pods */,
 				6E9CB76B90A736949B1FA49E /* Frameworks */,
@@ -73,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				EC5A7F7B22BDC35A00C22DA0 /* DevelopIt.app */,
+				EC3595D522C0116B00BD11DF /* DevelopItTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +174,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EC3595D422C0116B00BD11DF /* DevelopItTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC3595DE22C0116C00BD11DF /* Build configuration list for PBXNativeTarget "DevelopItTests" */;
+			buildPhases = (
+				EC3595D122C0116B00BD11DF /* Sources */,
+				EC3595D222C0116B00BD11DF /* Frameworks */,
+				EC3595D322C0116B00BD11DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC3595DB22C0116C00BD11DF /* PBXTargetDependency */,
+			);
+			name = DevelopItTests;
+			productName = DevelopItTests;
+			productReference = EC3595D522C0116B00BD11DF /* DevelopItTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EC5A7F7A22BDC35A00C22DA0 /* DevelopIt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC5A7F8D22BDC35F00C22DA0 /* Build configuration list for PBXNativeTarget "DevelopIt" */;
@@ -171,6 +221,10 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Christopher Aronson";
 				TargetAttributes = {
+					EC3595D422C0116B00BD11DF = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = EC5A7F7A22BDC35A00C22DA0;
+					};
 					EC5A7F7A22BDC35A00C22DA0 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -190,11 +244,19 @@
 			projectRoot = "";
 			targets = (
 				EC5A7F7A22BDC35A00C22DA0 /* DevelopIt */,
+				EC3595D422C0116B00BD11DF /* DevelopItTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EC3595D322C0116B00BD11DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC5A7F7922BDC35A00C22DA0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +313,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EC3595D122C0116B00BD11DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC3595D822C0116C00BD11DF /* DevelopItTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC5A7F7722BDC35A00C22DA0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +331,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC3595DB22C0116C00BD11DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC5A7F7A22BDC35A00C22DA0 /* DevelopIt */;
+			targetProxy = EC3595DA22C0116C00BD11DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EC5A7F8222BDC35A00C22DA0 /* Main.storyboard */ = {
@@ -282,6 +360,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EC3595DC22C0116C00BD11DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = DevelopItTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.chrisopheraronson.DevelopItTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DevelopIt.app/DevelopIt";
+			};
+			name = Debug;
+		};
+		EC3595DD22C0116C00BD11DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = DevelopItTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.chrisopheraronson.DevelopItTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DevelopIt.app/DevelopIt";
+			};
+			name = Release;
+		};
 		EC5A7F8B22BDC35F00C22DA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -439,6 +557,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EC3595DE22C0116C00BD11DF /* Build configuration list for PBXNativeTarget "DevelopItTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC3595DC22C0116C00BD11DF /* Debug */,
+				EC3595DD22C0116C00BD11DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EC5A7F7622BDC35A00C22DA0 /* Build configuration list for PBXProject "DevelopIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
