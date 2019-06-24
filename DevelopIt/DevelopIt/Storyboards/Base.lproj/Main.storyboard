@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Timer View Controller-->
         <scene sceneID="vuf-bq-oi1">
             <objects>
-                <viewController id="JF4-5Q-TtB" sceneMemberID="viewController">
+                <viewController id="JF4-5Q-TtB" customClass="TimerViewController" customModule="DevelopIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NCB-18-6qn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,17 +21,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="270-Kg-FwL">
                                 <rect key="frame" x="0.0" y="788.5" width="414" height="107.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyd-uX-KFN">
-                                        <rect key="frame" x="192" y="8" width="30" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyd-uX-KFN">
+                                        <rect key="frame" x="192" y="7" width="30" height="30"/>
                                         <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="addButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="UJr-8Z-50s"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F16-yz-gkE">
                                         <rect key="frame" x="286" y="8" width="34" height="30"/>
                                         <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="S2x-wV-88I"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwS-mQ-uaU">
                                         <rect key="frame" x="82" y="8" width="46" height="30"/>
                                         <state key="normal" title="Create"/>
+                                        <connections>
+                                            <action selector="createButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="pdj-3e-1qu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,6 +78,29 @@
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SjY-Ee-WSa">
                                 <rect key="frame" x="10.5" y="460" width="393" height="196.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Agitation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxQ-mW-TRo">
+                                        <rect key="frame" x="8" y="8" width="68" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epo-Hu-iKH">
+                                        <rect key="frame" x="8" y="37" width="151" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgB-g3-72M">
+                                        <rect key="frame" x="8" y="66" width="44" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="SjY-Ee-WSa" secondAttribute="height" multiplier="2:1" id="Pec-66-EJc"/>
@@ -80,7 +112,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-d9-V38">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer Title Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-d9-V38">
                                 <rect key="frame" x="8" y="188" width="398" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -89,14 +121,28 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ox0-50-Bey">
                                 <rect key="frame" x="190" y="398" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="8dZ-N7-i8y"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-wA-iTq">
                                 <rect key="frame" x="116" y="398" width="50" height="30"/>
                                 <state key="normal" title="Restart"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvS-a9-xbj">
+                                <rect key="frame" x="116" y="398" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Restart"/>
+                                <connections>
+                                    <action selector="restartButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="TCW-Df-XgW"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d40-82-O1e">
                                 <rect key="frame" x="248" y="398" width="32" height="30"/>
                                 <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="u3v-kp-FcQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,6 +173,16 @@
                         <viewLayoutGuide key="safeArea" id="OA0-ep-bZU"/>
                     </view>
                     <navigationItem key="navigationItem" id="bue-s1-EIY"/>
+                    <connections>
+                        <outlet property="collectionView" destination="hDP-DP-pLw" id="yVP-Qn-alO"/>
+                        <outlet property="nextButton" destination="d40-82-O1e" id="Dl6-XE-1Z7"/>
+                        <outlet property="restartButton" destination="xvS-a9-xbj" id="l9T-Qs-a7b"/>
+                        <outlet property="secondsInAgitationTimer" destination="epo-Hu-iKH" id="hXa-6W-r9b"/>
+                        <outlet property="startButton" destination="Ox0-50-Bey" id="FtV-h7-PUp"/>
+                        <outlet property="timerForAgitation" destination="zgB-g3-72M" id="FBL-AB-sRE"/>
+                        <outlet property="timerLabel" destination="fsu-9h-LlS" id="33z-PQ-hWZ"/>
+                        <outlet property="timerTitleLabel" destination="pf5-d9-V38" id="VxU-Sb-AJI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avH-oL-WEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
