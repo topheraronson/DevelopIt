@@ -116,5 +116,18 @@ class DevelopItModelTests: XCTestCase {
         
         XCTAssert(presets.count == 4)
     }
+    
+    func testUpdatePreset() {
+        
+        let preset = presetModelController.createPreset(context: coreDataStack.mainContext)
+        
+        XCTAssertNotNil(preset)
+        XCTAssertNotNil(preset.title)
+        XCTAssertNotNil(preset.id)
+        
+        presetModelController.update(preset: preset, with: "New Title")
+        
+        XCTAssertTrue(preset.title == "New Title")
+    }
 
 }

@@ -40,6 +40,11 @@ class PresetModelController {
         }
     }
     
+    func update(preset: Preset, with title: String) {
+        
+        preset.title = title
+    }
+    
     func fetchAllPresets(context: NSManagedObjectContext) -> [Preset] {
         
         let fetchRequest: NSFetchRequest<Preset> = Preset.fetchRequest()
