@@ -7,27 +7,30 @@
 //
 
 import XCTest
+import CoreData
+@testable import DevelopIt
 
 class DevelopItTests: XCTestCase {
 
+    var coreDataStack: TestCoreDataStack!
+    var presetModelController: PresetModelController!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        coreDataStack = TestCoreDataStack()
+        presetModelController = PresetModelController()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        coreDataStack = nil
+        presetModelController = nil
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testCreatePreset() {
+        
+        let preset = presetModelController.createPreset(context: coreDataStack.mainContext)
+        
+        XCTAssertNotNil(preset)
+        XCTAssertTrue(preset.title == preset.id?.uuidString)
     }
 
 }

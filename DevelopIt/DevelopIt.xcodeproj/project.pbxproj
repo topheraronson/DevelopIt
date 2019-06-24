@@ -24,6 +24,7 @@
 		ECF30FC022C0B7FD0042680B /* Timer+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBC22C0B7FD0042680B /* Timer+CoreDataClass copy.swift */; };
 		ECF30FC122C0B7FD0042680B /* Preset+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBD22C0B7FD0042680B /* Preset+CoreDataClass copy.swift */; };
 		ECF30FC322C0B8770042680B /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FC222C0B8770042680B /* TestCoreDataStack.swift */; };
+		ECF30FC522C0BD600042680B /* PresetModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FC422C0BD600042680B /* PresetModelController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		ECF30FBC22C0B7FD0042680B /* Timer+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+CoreDataClass copy.swift"; sourceTree = "<group>"; };
 		ECF30FBD22C0B7FD0042680B /* Preset+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preset+CoreDataClass copy.swift"; sourceTree = "<group>"; };
 		ECF30FC222C0B8770042680B /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		ECF30FC422C0BD600042680B /* PresetModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetModelController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 		ECB341B422BDE01E00693597 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ECF30FC422C0BD600042680B /* PresetModelController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				ECF30FBE22C0B7FD0042680B /* Preset+CoreDataProperties copy.swift in Sources */,
 				ECF30FC022C0B7FD0042680B /* Timer+CoreDataClass copy.swift in Sources */,
 				EC3595E122C0128300BD11DF /* DevelopIt.xcdatamodeld in Sources */,
+				ECF30FC522C0BD600042680B /* PresetModelController.swift in Sources */,
 				ECF30FBF22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift in Sources */,
 				EC5A7F7F22BDC35A00C22DA0 /* AppDelegate.swift in Sources */,
 				EC3595E322C0149300BD11DF /* Timer+Convenience.swift in Sources */,

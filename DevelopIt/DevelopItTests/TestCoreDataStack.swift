@@ -11,7 +11,6 @@ import CoreData
 @testable import DevelopIt
 
 class TestCoreDataStack {
-    static let shared = TestCoreDataStack()
     
     lazy var container: NSPersistentContainer = {
         
