@@ -32,12 +32,6 @@ class PresetModelController {
     func delete(preset: Preset, context: NSManagedObjectContext) {
         
         context.delete(preset)
-        
-        do {
-            try context.save()
-        } catch let error as NSError{
-            NSLog("\n\n\nCould not save after deletion\n\n\n\(error)\n\n\n\(error.userInfo)")
-        }
     }
     
     func update(preset: Preset, with title: String) {

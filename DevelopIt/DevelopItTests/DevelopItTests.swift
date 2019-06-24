@@ -129,5 +129,49 @@ class DevelopItModelTests: XCTestCase {
         
         XCTAssertTrue(preset.title == "New Title")
     }
+    
+    func testCreateTimer() {
+        
+        let timer = timerModelController.createPreset(title: "Developer",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
+        
+        XCTAssertNotNil(timer)
+        XCTAssertTrue(timer.title == "Developer")
+        XCTAssertTrue(timer.timerLength == 180)
+        XCTAssertTrue(timer.agitateTimer == 30)
+        
+        
+        
+    }
+    
+    func testDeleteTimer() {
+        
+        let timer = timerModelController.createPreset(title: "Developer",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
+        
+        XCTAssertNotNil(timer)
+        try? coreDataStack.mainContext.save()
+        
+        timerModelController.delete(timer: timer, context: coreDataStack.mainContext)
+        
+        XCTAssertTrue(coreDataStack.mainContext.hasChanges)
+    }
+    
+    func testUpdateTimer() {
+        
+        let timer = timerModelController.createPreset(title: "Develllloper",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
+        
+        timerModelController.update(timer: timer, title: "Developer", timerLength: nil, agitateTimer: nil)
+        
+        XCTAssertTrue(timer.title == "Developer")
+        
+    }
 
 }

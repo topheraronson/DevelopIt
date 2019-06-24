@@ -11,4 +11,32 @@ import CoreData
 
 class TimerModelController {
     
+    func createPreset(title: String,
+                      timerLength: Int16,
+                      agitateTimer: Int16,
+                      context: NSManagedObjectContext) -> Timer {
+        
+        return Timer(title: title, timerLength: timerLength, agitateTimer: agitateTimer, context: context)
+    }
+    
+    func delete(timer: Timer, context: NSManagedObjectContext) {
+        
+        context.delete(timer)
+    }
+    
+    func update(timer: Timer, title: String?, timerLength: Int16?, agitateTimer: Int16?) {
+        
+        if let title = title {
+            timer.title = title
+        }
+        
+        if let timerLength = timerLength {
+            timer.timerLength = timerLength
+        }
+        
+        if let agitateTimer = agitateTimer {
+            timer.agitateTimer = agitateTimer
+        }
+    }
+    
 }
