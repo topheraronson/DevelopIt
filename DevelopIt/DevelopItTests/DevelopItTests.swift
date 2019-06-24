@@ -174,4 +174,32 @@ class DevelopItModelTests: XCTestCase {
         
     }
 
+    func testAddTimersToPreset() {
+        
+        let preset = presetModelController.createPreset(context: coreDataStack.mainContext)
+        
+        let timer0 = timerModelController.createPreset(title: "Developer",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
+        
+        let timer1 = timerModelController.createPreset(title: "Stop",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
+        
+        let timer2 = timerModelController.createPreset(title: "Fix",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
+        
+        preset.addToTimers(timer0)
+        preset.addToTimers(timer1)
+        preset.addToTimers(timer2)
+        
+        XCTAssertTrue(preset.timers?.count == 3)
+        XCTAssertTrue(preset.timers!.contains(timer0))
+        XCTAssertTrue(preset.timers!.contains(timer1))
+        XCTAssertTrue(preset.timers!.contains(timer2))
+    }
 }
