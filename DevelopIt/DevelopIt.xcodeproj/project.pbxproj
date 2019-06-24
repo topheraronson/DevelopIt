@@ -17,8 +17,8 @@
 		EC49D3C422C1624900683A58 /* Timer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3C022C1624900683A58 /* Timer+CoreDataClass.swift */; };
 		EC49D3C522C1624900683A58 /* Preset+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3C122C1624900683A58 /* Preset+CoreDataProperties.swift */; };
 		EC49D3C622C1624900683A58 /* Timer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3C222C1624900683A58 /* Timer+CoreDataProperties.swift */; };
+		EC49D3C822C18B5900683A58 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3C722C18B5900683A58 /* TimerViewController.swift */; };
 		EC5A7F7F22BDC35A00C22DA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A7F7E22BDC35A00C22DA0 /* AppDelegate.swift */; };
-		EC5A7F8122BDC35A00C22DA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A7F8022BDC35A00C22DA0 /* ViewController.swift */; };
 		EC5A7F8422BDC35A00C22DA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8222BDC35A00C22DA0 /* Main.storyboard */; };
 		EC5A7F8622BDC35F00C22DA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */; };
 		EC5A7F8922BDC35F00C22DA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8722BDC35F00C22DA0 /* LaunchScreen.storyboard */; };
@@ -53,9 +53,9 @@
 		EC49D3C022C1624900683A58 /* Timer+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EC49D3C122C1624900683A58 /* Preset+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preset+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EC49D3C222C1624900683A58 /* Timer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EC49D3C722C18B5900683A58 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		EC5A7F7B22BDC35A00C22DA0 /* DevelopIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevelopIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5A7F7E22BDC35A00C22DA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC5A7F8022BDC35A00C22DA0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC5A7F8322BDC35A00C22DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC5A7F8822BDC35F00C22DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 		ECB341B322BDE01300693597 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EC5A7F8022BDC35A00C22DA0 /* ViewController.swift */,
+				EC49D3C722C18B5900683A58 /* TimerViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -362,13 +362,13 @@
 				ECF30FB922C0B6F40042680B /* Preset+Convenience.swift in Sources */,
 				EC49D3C422C1624900683A58 /* Timer+CoreDataClass.swift in Sources */,
 				EC3595E522C015B500BD11DF /* CoreDataStack.swift in Sources */,
-				EC5A7F8122BDC35A00C22DA0 /* ViewController.swift in Sources */,
 				EC3595E122C0128300BD11DF /* DevelopIt.xcdatamodeld in Sources */,
 				EC49D3C622C1624900683A58 /* Timer+CoreDataProperties.swift in Sources */,
 				EC49D3BE22C15F9800683A58 /* TimerModelController.swift in Sources */,
 				EC49D3C322C1624900683A58 /* Preset+CoreDataClass.swift in Sources */,
 				ECF30FC522C0BD600042680B /* PresetModelController.swift in Sources */,
 				EC49D3C522C1624900683A58 /* Preset+CoreDataProperties.swift in Sources */,
+				EC49D3C822C18B5900683A58 /* TimerViewController.swift in Sources */,
 				EC5A7F7F22BDC35A00C22DA0 /* AppDelegate.swift in Sources */,
 				EC3595E322C0149300BD11DF /* Timer+Convenience.swift in Sources */,
 			);
