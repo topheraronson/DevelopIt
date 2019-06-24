@@ -11,17 +11,46 @@ import CoreData
 
 class PresetModelController {
     
+    var presets = [Preset]()
+    
     func createPreset(context: NSManagedObjectContext) -> Preset {
         
-        return Preset(context: context)
+        return Preset(id: UUID(), context: context)
     }
     
     func save(preset: Preset, context: NSManagedObjectContext) {
         
-        do {
-            try context.save()
-        } catch let error as NSError {
-            NSLog("\n\n\nCould not save preset.\n\n\n\(error)\n\n\n\(error.userInfo)")
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch let error as NSError {
+                NSLog("\n\n\nCould not save preset.\n\n\n\(error)\n\n\n\(error.userInfo)")
+            }
         }
     }
+    
+    func delete(preset: Preset, context: NSManagedObjectContext) {
+        
+        context.delete(preset)
+        
+        do {
+            try context.save()
+        } catch let error as NSError{
+            NSLog("\n\n\nCould not save after deletion\n\n\n\(error)\n\n\n\(error.userInfo)")
+        }
+    }
+    
+    func fetchAllPresets(context: NSManagedObjectContext) -> [Preset] {
+        
+        let fetchRequest: NSFetchRequest<Preset> = Preset.fetchRequest()
+        
+        do {
+            presets = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            NSLog("\n\n\nCould not fetch from persistent store\n\n\n\(error)\n\n\n\(error.userInfo)")
+        }
+        
+        return presets
+    }
+    
 }
