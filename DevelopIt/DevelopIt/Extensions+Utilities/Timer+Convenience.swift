@@ -10,7 +10,10 @@ import Foundation
 import CoreData
 
 extension Timer {
-    convenience init(title: String, timerLength: Int16, agitateTimer: Int16, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init(title: String,
+                     timerLength: Int16,
+                     agitateTimer: Int16,
+                     context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         
         self.init(context: context)
         

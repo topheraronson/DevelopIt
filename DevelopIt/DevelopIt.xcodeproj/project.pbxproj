@@ -23,6 +23,7 @@
 		ECF30FBF22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBB22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift */; };
 		ECF30FC022C0B7FD0042680B /* Timer+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBC22C0B7FD0042680B /* Timer+CoreDataClass copy.swift */; };
 		ECF30FC122C0B7FD0042680B /* Preset+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBD22C0B7FD0042680B /* Preset+CoreDataClass copy.swift */; };
+		ECF30FC322C0B8770042680B /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FC222C0B8770042680B /* TestCoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		ECF30FBB22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
 		ECF30FBC22C0B7FD0042680B /* Timer+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+CoreDataClass copy.swift"; sourceTree = "<group>"; };
 		ECF30FBD22C0B7FD0042680B /* Preset+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preset+CoreDataClass copy.swift"; sourceTree = "<group>"; };
+		ECF30FC222C0B8770042680B /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				EC3595D722C0116C00BD11DF /* DevelopItTests.swift */,
 				EC3595D922C0116C00BD11DF /* Info.plist */,
+				ECF30FC222C0B8770042680B /* TestCoreDataStack.swift */,
 			);
 			path = DevelopItTests;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC3595D822C0116C00BD11DF /* DevelopItTests.swift in Sources */,
+				ECF30FC322C0B8770042680B /* TestCoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
