@@ -10,7 +10,7 @@ import XCTest
 import CoreData
 @testable import DevelopIt
 
-class DevelopItTests: XCTestCase {
+class DevelopItModelTests: XCTestCase {
 
     var coreDataStack: TestCoreDataStack!
     var presetModelController: PresetModelController!
