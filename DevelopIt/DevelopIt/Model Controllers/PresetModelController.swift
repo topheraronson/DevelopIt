@@ -15,4 +15,13 @@ class PresetModelController {
         
         return Preset(context: context)
     }
+    
+    func save(preset: Preset, context: NSManagedObjectContext) {
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            NSLog("\n\n\nCould not save preset.\n\n\n\(error)\n\n\n\(error.userInfo)")
+        }
+    }
 }

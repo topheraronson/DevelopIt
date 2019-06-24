@@ -32,5 +32,20 @@ class DevelopItModelTests: XCTestCase {
         XCTAssertNotNil(preset)
         XCTAssertTrue(preset.title == preset.id?.uuidString)
     }
+    
+    func testSaveTimer() {
+        
+        let preset = presetModelController.createPreset(context: coreDataStack.mainContext)
+        expectation(forNotification: .NSManagedObjectContextDidSave, object: coreDataStack.mainContext)
+        { notificatino in
+            return true
+        }
+        
+        presetModelController.save(preset: preset, context: coreDataStack.mainContext)
+        
+        waitForExpectations(timeout: 2.0) { error in
+            XCTAssertNil(error, "Save did not occur")
+        }
+    }
 
 }
