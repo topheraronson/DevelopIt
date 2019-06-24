@@ -18,6 +18,11 @@
 		EC5A7F8622BDC35F00C22DA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */; };
 		EC5A7F8922BDC35F00C22DA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8722BDC35F00C22DA0 /* LaunchScreen.storyboard */; };
 		ECB341B822BDE1DB00693597 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECB341B722BDE1DB00693597 /* Pacifico.ttf */; };
+		ECF30FB922C0B6F40042680B /* Preset+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FB822C0B6F40042680B /* Preset+Convenience.swift */; };
+		ECF30FBE22C0B7FD0042680B /* Preset+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBA22C0B7FD0042680B /* Preset+CoreDataProperties copy.swift */; };
+		ECF30FBF22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBB22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift */; };
+		ECF30FC022C0B7FD0042680B /* Timer+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBC22C0B7FD0042680B /* Timer+CoreDataClass copy.swift */; };
+		ECF30FC122C0B7FD0042680B /* Preset+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FBD22C0B7FD0042680B /* Preset+CoreDataClass copy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,11 @@
 		EC5A7F8822BDC35F00C22DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC5A7F8A22BDC35F00C22DA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECB341B722BDE1DB00693597 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
+		ECF30FB822C0B6F40042680B /* Preset+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Preset+Convenience.swift"; sourceTree = "<group>"; };
+		ECF30FBA22C0B7FD0042680B /* Preset+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preset+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
+		ECF30FBB22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
+		ECF30FBC22C0B7FD0042680B /* Timer+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+CoreDataClass copy.swift"; sourceTree = "<group>"; };
+		ECF30FBD22C0B7FD0042680B /* Preset+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preset+CoreDataClass copy.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +176,10 @@
 		ECB341B522BDE03B00693597 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ECF30FBA22C0B7FD0042680B /* Preset+CoreDataProperties copy.swift */,
+				ECF30FBB22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift */,
+				ECF30FBC22C0B7FD0042680B /* Timer+CoreDataClass copy.swift */,
+				ECF30FBD22C0B7FD0042680B /* Preset+CoreDataClass copy.swift */,
 				EC3595DF22C0128300BD11DF /* DevelopIt.xcdatamodeld */,
 			);
 			path = Model;
@@ -176,6 +190,7 @@
 			children = (
 				EC3595E222C0149300BD11DF /* Timer+Convenience.swift */,
 				EC3595E422C015B500BD11DF /* CoreDataStack.swift */,
+				ECF30FB822C0B6F40042680B /* Preset+Convenience.swift */,
 			);
 			path = "Extensions+Utilities";
 			sourceTree = "<group>";
@@ -334,9 +349,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECF30FC122C0B7FD0042680B /* Preset+CoreDataClass copy.swift in Sources */,
+				ECF30FB922C0B6F40042680B /* Preset+Convenience.swift in Sources */,
 				EC3595E522C015B500BD11DF /* CoreDataStack.swift in Sources */,
 				EC5A7F8122BDC35A00C22DA0 /* ViewController.swift in Sources */,
+				ECF30FBE22C0B7FD0042680B /* Preset+CoreDataProperties copy.swift in Sources */,
+				ECF30FC022C0B7FD0042680B /* Timer+CoreDataClass copy.swift in Sources */,
 				EC3595E122C0128300BD11DF /* DevelopIt.xcdatamodeld in Sources */,
+				ECF30FBF22C0B7FD0042680B /* Timer+CoreDataProperties copy.swift in Sources */,
 				EC5A7F7F22BDC35A00C22DA0 /* AppDelegate.swift in Sources */,
 				EC3595E322C0149300BD11DF /* Timer+Convenience.swift in Sources */,
 			);

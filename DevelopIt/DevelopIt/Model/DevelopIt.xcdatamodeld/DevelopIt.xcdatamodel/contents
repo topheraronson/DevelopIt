@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="19A471t" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Preset" representedClassName="Preset" syncable="YES" codeGenerationType="class">
+    <entity name="Preset" representedClassName="Preset" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="timers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Timer" inverseName="preset" inverseEntity="Timer" syncable="YES"/>
     </entity>
-    <entity name="Timer" representedClassName="Timer" syncable="YES" codeGenerationType="class">
+    <entity name="Timer" representedClassName="Timer" syncable="YES">
         <attribute name="agitateTimer" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="60" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timerLength" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="3600" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="preset" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preset" inverseName="timers" inverseEntity="Preset" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Timer" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Preset" positionX="-221.1640625" positionY="-17.51953125" width="128" height="75"/>
+        <element name="Preset" positionX="-277.79296875" positionY="-22.25390625" width="142.671875" height="88"/>
+        <element name="Timer" positionX="42.859375" positionY="84.84375" width="128" height="103"/>
     </elements>
 </model>
