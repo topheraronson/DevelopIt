@@ -138,7 +138,7 @@ class DevelopItModelTests: XCTestCase {
     
     func testCreateTimer() {
         
-        let timer = timerModelController.createPreset(title: "Developer",
+        let timer = timerModelController.createTimer(title: "Developer",
                                                       timerLength: 180,
                                                       agitateTimer: 30,
                                                       context: coreDataStack.mainContext)
@@ -154,10 +154,10 @@ class DevelopItModelTests: XCTestCase {
     
     func testDeleteTimer() {
         
-        let timer = timerModelController.createPreset(title: "Developer",
-                                                      timerLength: 180,
-                                                      agitateTimer: 30,
-                                                      context: coreDataStack.mainContext)
+        let timer = timerModelController.createTimer(title: "Developer",
+                                                     timerLength: 180,
+                                                     agitateTimer: 30,
+                                                     context: coreDataStack.mainContext)
         
         XCTAssertNotNil(timer)
         try? coreDataStack.mainContext.save()
@@ -169,10 +169,10 @@ class DevelopItModelTests: XCTestCase {
     
     func testUpdateTimer() {
         
-        let timer = timerModelController.createPreset(title: "Develllloper",
-                                                      timerLength: 180,
-                                                      agitateTimer: 30,
-                                                      context: coreDataStack.mainContext)
+        let timer = timerModelController.createTimer(title: "Developer",
+                                                     timerLength: 180,
+                                                     agitateTimer: 30,
+                                                     context: coreDataStack.mainContext)
         
         timerModelController.update(timer: timer, title: "Developer", timerLength: nil, agitateTimer: nil)
         
@@ -184,17 +184,17 @@ class DevelopItModelTests: XCTestCase {
         
         let preset = presetModelController.createPreset(context: coreDataStack.mainContext)
         
-        let timer0 = timerModelController.createPreset(title: "Developer",
+        let timer0 = timerModelController.createTimer(title: "Developer",
                                                       timerLength: 180,
                                                       agitateTimer: 30,
                                                       context: coreDataStack.mainContext)
         
-        let timer1 = timerModelController.createPreset(title: "Stop",
+        let timer1 = timerModelController.createTimer(title: "Developer",
                                                       timerLength: 180,
                                                       agitateTimer: 30,
                                                       context: coreDataStack.mainContext)
         
-        let timer2 = timerModelController.createPreset(title: "Fix",
+        let timer2 = timerModelController.createTimer(title: "Developer",
                                                       timerLength: 180,
                                                       agitateTimer: 30,
                                                       context: coreDataStack.mainContext)
@@ -213,25 +213,25 @@ class DevelopItModelTests: XCTestCase {
         
         let preset = presetModelController.createPreset(context: coreDataStack.mainContext)
         
-        let timer0 = timerModelController.createPreset(title: "Developer",
-                                                       timerLength: 180,
-                                                       agitateTimer: 30,
-                                                       context: coreDataStack.mainContext)
+        let timer0 = timerModelController.createTimer(title: "Developer",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
         
-        let timer1 = timerModelController.createPreset(title: "Stop",
-                                                       timerLength: 180,
-                                                       agitateTimer: 30,
-                                                       context: coreDataStack.mainContext)
+        let timer1 = timerModelController.createTimer(title: "Developer",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
         
-        let randomTimer = timerModelController.createPreset(title: "Random Timer",
-                                                            timerLength: 3600,
-                                                            agitateTimer: 60,
-                                                            context: coreDataStack.mainContext)
+        let randomTimer = timerModelController.createTimer(title: "Developer",
+                                                           timerLength: 180,
+                                                           agitateTimer: 30,
+                                                           context: coreDataStack.mainContext)
         
-        let timer2 = timerModelController.createPreset(title: "Fix",
-                                                       timerLength: 180,
-                                                       agitateTimer: 30,
-                                                       context: coreDataStack.mainContext)
+        let timer2 = timerModelController.createTimer(title: "Developer",
+                                                      timerLength: 180,
+                                                      agitateTimer: 30,
+                                                      context: coreDataStack.mainContext)
         
         preset.addToTimers(timer0)
         preset.addToTimers(timer1)
@@ -324,6 +324,4 @@ extension DevelopItModelTests: DevTimerDelegate {
     func changeTimerDisplay(_ valueToDisplay: String) {
         print(valueToDisplay)
     }
-    
-    
 }
