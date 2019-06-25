@@ -35,9 +35,18 @@ class TimerViewController: UIViewController {
 
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         currentPreset = presetModelController.createPreset(context: CoreDataStack.shared.mainContext)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "ShowAddTimer" {
+            let destination = segue.destination as! AddTimerViewController
+            destination.timerModelController = timerModelController
+            destination.delegate = self
+        }
     }
 
     @IBAction func restartButtonTapped(_ sender: Any) {
@@ -86,5 +95,12 @@ extension TimerViewController: UICollectionViewDataSource {
         return cell
     }
     
+}
+
+extension TimerViewController: AddTimerViewControllerDelegate {
+    
+    func addTimerToPreset(timer: Timer) {
+        print(timer)
+    }
 }
 

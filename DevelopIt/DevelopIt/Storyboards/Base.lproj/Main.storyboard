@@ -212,12 +212,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Timer Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mUP-5G-Q8C">
-                                <rect key="frame" x="8" y="112" width="398" height="88"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X42-Jx-e4g">
                                 <rect key="frame" x="8" y="208" width="398" height="216"/>
                                 <subviews>
@@ -269,18 +263,27 @@
                                     <constraint firstAttribute="trailing" secondItem="pfo-uR-O0X" secondAttribute="trailing" constant="8" id="pi9-4y-mI4"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Timer Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ijz-2L-xrR">
+                                <rect key="frame" x="8" y="124" width="398" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="xkh-ZV-ktI"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="X42-Jx-e4g" secondAttribute="trailing" constant="8" id="BDE-xN-6kf"/>
-                            <constraint firstItem="X42-Jx-e4g" firstAttribute="leading" secondItem="c9m-OT-oHh" secondAttribute="leading" constant="8" id="FxH-vc-m6S"/>
-                            <constraint firstItem="mUP-5G-Q8C" firstAttribute="top" secondItem="c9m-OT-oHh" secondAttribute="top" constant="24" id="efZ-LA-Oar"/>
-                            <constraint firstItem="kHW-1h-7XB" firstAttribute="top" secondItem="X42-Jx-e4g" secondAttribute="bottom" constant="24" id="lFV-ic-AUw"/>
-                            <constraint firstItem="mUP-5G-Q8C" firstAttribute="leading" secondItem="c9m-OT-oHh" secondAttribute="leading" constant="8" id="lcN-a1-ahi"/>
-                            <constraint firstItem="c9m-OT-oHh" firstAttribute="trailing" secondItem="mUP-5G-Q8C" secondAttribute="trailing" constant="8" id="qM3-2D-s3A"/>
+                            <constraint firstItem="X42-Jx-e4g" firstAttribute="top" secondItem="Ijz-2L-xrR" secondAttribute="bottom" constant="24" id="3Oq-c6-mTS"/>
+                            <constraint firstAttribute="trailing" secondItem="X42-Jx-e4g" secondAttribute="trailing" constant="8" id="A6s-lw-WIV"/>
+                            <constraint firstItem="kHW-1h-7XB" firstAttribute="top" secondItem="X42-Jx-e4g" secondAttribute="bottom" constant="24" id="SMe-bD-oJW"/>
+                            <constraint firstItem="X42-Jx-e4g" firstAttribute="leading" secondItem="c9m-OT-oHh" secondAttribute="leading" constant="8" id="aXs-MU-djt"/>
+                            <constraint firstItem="Ijz-2L-xrR" firstAttribute="top" secondItem="c9m-OT-oHh" secondAttribute="top" constant="36" id="gTa-Uj-gut"/>
+                            <constraint firstItem="Ijz-2L-xrR" firstAttribute="leading" secondItem="c9m-OT-oHh" secondAttribute="leading" constant="8" id="ha6-Tt-dLZ"/>
+                            <constraint firstItem="c9m-OT-oHh" firstAttribute="trailing" secondItem="Ijz-2L-xrR" secondAttribute="trailing" constant="8" id="rbQ-KM-gjl"/>
                             <constraint firstItem="c9m-OT-oHh" firstAttribute="trailing" secondItem="kHW-1h-7XB" secondAttribute="trailing" constant="24" id="ssh-1c-Z6d"/>
                             <constraint firstItem="kHW-1h-7XB" firstAttribute="leading" secondItem="c9m-OT-oHh" secondAttribute="leading" constant="24" id="vm4-Qe-IRe"/>
-                            <constraint firstItem="X42-Jx-e4g" firstAttribute="top" secondItem="mUP-5G-Q8C" secondAttribute="bottom" constant="8" id="wv7-Rf-gSq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c9m-OT-oHh"/>
                     </view>
@@ -296,7 +299,7 @@
                         <outlet property="agitationTimerSlider" destination="pfo-uR-O0X" id="nxJ-Mr-GDB"/>
                         <outlet property="minutePickerView" destination="JPQ-90-wSP" id="SfU-O9-cAT"/>
                         <outlet property="secondPickerView" destination="s53-IR-lej" id="Kvy-Y4-nGd"/>
-                        <outlet property="timerTitleTextView" destination="mUP-5G-Q8C" id="ALb-b0-aeR"/>
+                        <outlet property="timerTitleTextField" destination="Ijz-2L-xrR" id="hJU-Yw-iCM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIl-gL-fyl" userLabel="First Responder" sceneMemberID="firstResponder"/>

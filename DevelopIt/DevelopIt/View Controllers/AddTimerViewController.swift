@@ -16,7 +16,7 @@ protocol AddTimerViewControllerDelegate: class {
 class AddTimerViewController: UIViewController {
 
     // MARK: - IBOutlets
-    @IBOutlet var timerTitleTextView: UITextView!
+    @IBOutlet var timerTitleTextField: UITextField!
     @IBOutlet var minutePickerView: UIPickerView!
     @IBOutlet var secondPickerView: UIPickerView!
     @IBOutlet var agitationSecondsLabel: UILabel!
@@ -40,9 +40,23 @@ class AddTimerViewController: UIViewController {
         minutePickerView.dataSource = self
         secondPickerView.delegate = self
         secondPickerView.dataSource = self
+        timerTitleTextField.delegate = self
         
         agitationSecondsLabel.text = "No Agitation"
+        setupKeyboardDismissRecognizer()
         
+    }
+    
+    func setupKeyboardDismissRecognizer() {
+        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.dismissKeyboard))
+        
+        self.view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // MARK: - IBActions
@@ -59,7 +73,7 @@ class AddTimerViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        guard let title = timerTitleTextView.text,
+        guard let title = timerTitleTextField.text,
         let minutes = minutes,
         let seconds = seconds
         else { return }
@@ -76,7 +90,6 @@ class AddTimerViewController: UIViewController {
         
         navigationController?.popToRootViewController(animated: true)
     }
-    
 }
 
 // TODO: - Add to own file and move to extensions group
@@ -84,7 +97,7 @@ extension AddTimerViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        if pickerView.tag == 0 {
+        if pickerView.tag == 1 {
             minutes = Int(pickerData[row])
         } else {
             seconds = Int(pickerData[row])
@@ -108,3 +121,13 @@ extension AddTimerViewController: UIPickerViewDataSource {
     }
     
 }
+
+extension AddTimerViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        timerTitleTextField.resignFirstResponder()
+        return true
+    }
+}
+
