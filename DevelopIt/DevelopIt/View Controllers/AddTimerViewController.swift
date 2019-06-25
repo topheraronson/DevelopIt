@@ -25,6 +25,7 @@ class AddTimerViewController: UIViewController {
     // MARK: - Properties
     private var minutes: Int?
     private var seconds: Int?
+    weak var currentTimer: Timer?
     weak var timerModelController: TimerModelController?
     weak var delegate: AddTimerViewControllerDelegate?
     private let pickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
@@ -32,7 +33,7 @@ class AddTimerViewController: UIViewController {
                               "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45",
                               "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]
     
-    
+    // MARK: - Life Cycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,11 +43,17 @@ class AddTimerViewController: UIViewController {
         secondPickerView.dataSource = self
         timerTitleTextField.delegate = self
         
+        if let currentTimer = currentTimer {
+            
+            timerTitleTextField.text = currentTimer.title
+            
+        }
         agitationSecondsLabel.text = "No Agitation"
         setupKeyboardDismissRecognizer()
         
     }
     
+    // MARK: - Keyboard Dismissal Functoins
     func setupKeyboardDismissRecognizer() {
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
@@ -73,10 +80,19 @@ class AddTimerViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
+        // TODO: - Handle reciveing an empty or nil property
         guard let title = timerTitleTextField.text,
-        let minutes = minutes,
-        let seconds = seconds
-        else { return }
+        !title.isEmpty
+        else {
+            let alertController = UIAlertController(title: "No Title", message: "Please Enter a Title", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Okay", style: .default))
+            
+            present(alertController, animated: true)
+            return
+        }
+        
+        let minutes = self.minutes ?? 0
+        let seconds = self.seconds ?? 0
         
         let timeInterval = Int16((minutes * 60) + seconds)
         let agitateTimer = Int16(agitationTimerSlider.value)
@@ -93,6 +109,7 @@ class AddTimerViewController: UIViewController {
 }
 
 // TODO: - Add to own file and move to extensions group
+// MARK: - Picker Delegate Extension, i.e. Selection Methods
 extension AddTimerViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -107,6 +124,7 @@ extension AddTimerViewController: UIPickerViewDelegate {
     }
 }
 
+// MARK: - Picker Data Source Extension, i.e. Display data methods
 extension AddTimerViewController: UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -124,6 +142,7 @@ extension AddTimerViewController: UIPickerViewDataSource {
     
 }
 
+// MARK: - Text Field Delegate. Used for return button
 extension AddTimerViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -132,4 +151,5 @@ extension AddTimerViewController: UITextFieldDelegate {
         return true
     }
 }
+
 

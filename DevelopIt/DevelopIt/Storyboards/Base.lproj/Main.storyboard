@@ -193,6 +193,7 @@
                         <outlet property="timerForAgitation" destination="zgB-g3-72M" id="FBL-AB-sRE"/>
                         <outlet property="timerLabel" destination="fsu-9h-LlS" id="33z-PQ-hWZ"/>
                         <outlet property="timerTitleLabel" destination="pf5-d9-V38" id="VxU-Sb-AJI"/>
+                        <segue destination="NLX-Y1-8Po" kind="show" identifier="ShowEditTimer" id="mXt-dz-pHl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avH-oL-WEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -265,7 +266,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -299,7 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIl-gL-fyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1305.7971014492755" y="-315.40178571428572"/>
+            <point key="canvasLocation" x="1845" y="-315"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wnv-dD-Eof">
@@ -320,4 +321,7 @@
             <point key="canvasLocation" x="-219" y="-315"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mXt-dz-pHl"/>
+    </inferredMetricsTieBreakers>
 </document>

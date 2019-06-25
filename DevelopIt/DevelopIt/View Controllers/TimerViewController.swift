@@ -37,6 +37,7 @@ class TimerViewController: UIViewController {
         
     }
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowAddTimer" {
@@ -46,10 +47,12 @@ class TimerViewController: UIViewController {
         }
     }
 
+    // MARK: - IBActions
     @IBAction func restartButtonTapped(_ sender: Any) {
     }
     
     @IBAction func startButtonTapped(_ sender: Any) {
+        timerController?.startTimer()
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
@@ -67,8 +70,16 @@ class TimerViewController: UIViewController {
 
 extension TimerViewController: DevTimerDelegate {
     
-    func changeTimerDisplay(_ valueToDisplay: String) {
-        timerLabel.text = valueToDisplay
+    func changeTimerDisplay(_ valueToDisplay: Int) {
+        
+        let timerFormatter = DateComponentsFormatter()
+        let timerInterval = TimeInterval(valueToDisplay)
+        
+        timerFormatter.allowedUnits = [.minute, .second]
+        timerFormatter.unitsStyle = .positional
+        timerFormatter.zeroFormattingBehavior = .pad
+        
+        timerLabel.text = timerFormatter.string(from: timerInterval)
     }
     
 }
@@ -99,6 +110,10 @@ extension TimerViewController: UICollectionViewDelegate {
         let agitateDisplay = "Evey \(agitateSecondsDisplay)"
         
         secondsInAgitationTimer.text = agitateDisplay
+        
+        timerController = DevTimer(mainTimerDuration: Int(timer.timerLength),
+                                   agitateTimerDuration: Int(timer.agitateTimer))
+        timerController?.delegate = self
     }
 }
 

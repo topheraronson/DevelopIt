@@ -10,7 +10,7 @@ import Foundation
 import AsyncTimer
 
 protocol DevTimerDelegate: class {
-    func changeTimerDisplay(_ valueToDisplay: String)
+    func changeTimerDisplay(_ valueToDisplay: Int)
 }
 
 class DevTimer {
@@ -27,7 +27,7 @@ class DevTimer {
             interval: .seconds(1),
             times: self.mainTimerDuration,
             block: { [weak self] value in
-                self?.delegate?.changeTimerDisplay(value.description)
+                self?.delegate?.changeTimerDisplay(value)
             }, completion: { [weak self] in
                 NotificationCenter.default.post(name: .TimerDidFinish, object: nil)
             }
