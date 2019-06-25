@@ -9,31 +9,40 @@
 import Foundation
 import AsyncTimer
 
+protocol DevTimerDelegate: class {
+    func changeTimerDisplay(_ valueToDisplay: String)
+}
+
 class DevTimer {
     
+    // MARK: - Public Properties
     var mainTimerDuration: Int
     var agitateTimerDuration: Int
-    var displayTimerText: String?
+    weak var delegate: DevTimerDelegate?
     
+    // MARK: - Private Properties
     private lazy var timer: AsyncTimer = {
-       
+
         return AsyncTimer(
             interval: .seconds(1),
             times: self.mainTimerDuration,
             block: { [weak self] value in
-                self?.displayTimerText = value.description
+                self?.delegate?.changeTimerDisplay(value.description)
             }, completion: { [weak self] in
-                print("Done")
+                NotificationCenter.default.post(name: .TimerDidFinish, object: nil)
             }
         )
     }()
     
+    
+    // MARK: - INIT
     init(mainTimerDuration: Int, agitateTimerDuration: Int) {
         
         self.mainTimerDuration = mainTimerDuration
         self.agitateTimerDuration = agitateTimerDuration
     }
     
+    // MARK: - Timer Control Functions
     func startTimer() {
         print("Starting Timer")
         timer.start()
@@ -63,4 +72,9 @@ class DevTimer {
         return timer.isRunning ? .isRunning : timer.isPaused ? .isPaused : .isStopped
     }
     
+}
+
+// TODO: - Move to its own file in extensions group
+extension Notification.Name {
+    public static let TimerDidFinish = Notification.Name("TimerDidFinish")
 }

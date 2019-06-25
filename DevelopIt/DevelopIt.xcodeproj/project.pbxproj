@@ -20,6 +20,8 @@
 		EC49D3C822C18B5900683A58 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3C722C18B5900683A58 /* TimerViewController.swift */; };
 		EC49D3CA22C1A04600683A58 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3C922C1A04600683A58 /* Timer.swift */; };
 		EC49D3CC22C1A43300683A58 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3CB22C1A43300683A58 /* TimerState.swift */; };
+		EC49D3D022C1D29C00683A58 /* TimerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3CF22C1D29B00683A58 /* TimerCollectionViewCell.swift */; };
+		EC49D3D222C1D51000683A58 /* AddTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC49D3D122C1D51000683A58 /* AddTimerViewController.swift */; };
 		EC5A7F7F22BDC35A00C22DA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A7F7E22BDC35A00C22DA0 /* AppDelegate.swift */; };
 		EC5A7F8422BDC35A00C22DA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8222BDC35A00C22DA0 /* Main.storyboard */; };
 		EC5A7F8622BDC35F00C22DA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */; };
@@ -58,6 +60,8 @@
 		EC49D3C722C18B5900683A58 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		EC49D3C922C1A04600683A58 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		EC49D3CB22C1A43300683A58 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
+		EC49D3CF22C1D29B00683A58 /* TimerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCollectionViewCell.swift; sourceTree = "<group>"; };
+		EC49D3D122C1D51000683A58 /* AddTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerViewController.swift; sourceTree = "<group>"; };
 		EC5A7F7B22BDC35A00C22DA0 /* DevelopIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevelopIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5A7F7E22BDC35A00C22DA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC5A7F8322BDC35A00C22DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +120,14 @@
 			path = DevelopItTests;
 			sourceTree = "<group>";
 		};
+		EC49D3CE22C1D26100683A58 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EC49D3CF22C1D29B00683A58 /* TimerCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		EC5A7F7222BDC35A00C22DA0 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +154,7 @@
 				ECB341B622BDE04B00693597 /* Extensions+Utilities */,
 				ECB341B522BDE03B00693597 /* Model */,
 				ECB341B422BDE01E00693597 /* Model Controllers */,
+				EC49D3CE22C1D26100683A58 /* Cell */,
 				ECB341B322BDE01300693597 /* View Controllers */,
 				ECB341B222BDDFFC00693597 /* Storyboards */,
 				ECB341B122BDDFED00693597 /* Resources */,
@@ -173,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				EC49D3C722C18B5900683A58 /* TimerViewController.swift */,
+				EC49D3D122C1D51000683A58 /* AddTimerViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -365,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC49D3D222C1D51000683A58 /* AddTimerViewController.swift in Sources */,
 				ECF30FB922C0B6F40042680B /* Preset+Convenience.swift in Sources */,
 				EC49D3C422C1624900683A58 /* Timer+CoreDataClass.swift in Sources */,
 				EC3595E522C015B500BD11DF /* CoreDataStack.swift in Sources */,
@@ -375,6 +390,7 @@
 				EC49D3BE22C15F9800683A58 /* TimerModelController.swift in Sources */,
 				EC49D3C322C1624900683A58 /* Preset+CoreDataClass.swift in Sources */,
 				ECF30FC522C0BD600042680B /* PresetModelController.swift in Sources */,
+				EC49D3D022C1D29C00683A58 /* TimerCollectionViewCell.swift in Sources */,
 				EC49D3C522C1624900683A58 /* Preset+CoreDataProperties.swift in Sources */,
 				EC49D3C822C18B5900683A58 /* TimerViewController.swift in Sources */,
 				EC5A7F7F22BDC35A00C22DA0 /* AppDelegate.swift in Sources */,

@@ -15,16 +15,22 @@ class DevelopItModelTests: XCTestCase {
     var coreDataStack: TestCoreDataStack!
     var presetModelController: PresetModelController!
     var timerModelController: TimerModelController!
+    var timerController: DevTimer!
+    var timerDisplay: Int!
     
     override func setUp() {
         coreDataStack = TestCoreDataStack()
         presetModelController = PresetModelController()
         timerModelController = TimerModelController()
+        timerDisplay = 0
     }
 
     override func tearDown() {
         coreDataStack = nil
         presetModelController = nil
+        timerModelController = nil
+        timerController = nil
+        timerDisplay = nil
     }
 
     func testCreatePreset() {
@@ -247,4 +253,77 @@ class DevelopItModelTests: XCTestCase {
         XCTAssertTrue(preset.timers!.contains(timer2))
 
     }
+    
+    func testCreateAsyncTimer() {
+        
+        timerController = DevTimer(mainTimerDuration: 60, agitateTimerDuration: 10)
+        
+        XCTAssertNotNil(timerController)
+        XCTAssertTrue(timerController.mainTimerDuration == 60)
+        XCTAssertTrue(timerController.agitateTimerDuration == 10)
+    }
+    
+    func testStartAsyncTimer() {
+        
+        timerController = DevTimer(mainTimerDuration: 10, agitateTimerDuration: 0)
+        timerController.delegate = self
+        expectation(forNotification: .TimerDidFinish, object: nil) { notification in
+            return true
+        }
+        
+        
+        timerController.startTimer()
+        
+        waitForExpectations(timeout: 15) { error in
+            XCTAssertNil(error, "error should be nil")
+        }
+        
+    }
+    
+    func testPauseAsyncTimer() {
+        
+        timerController = DevTimer(mainTimerDuration: 10, agitateTimerDuration: 0)
+        timerController.delegate = self
+        let expectation = self.expectation(forNotification: .TimerDidFinish, object: nil) { notification in
+            return true
+        }
+        
+        expectation.isInverted = true
+        
+        
+        timerController.startTimer()
+        timerController.pauseTimer()
+        
+        waitForExpectations(timeout: 15) { error in
+            XCTAssertNil(error, "error should be nil")
+        }
+    }
+    
+    func testResumeAsyncTimer() {
+        
+        timerController = DevTimer(mainTimerDuration: 10, agitateTimerDuration: 0)
+        timerController.delegate = self
+        expectation(forNotification: .TimerDidFinish, object: nil) { notification in
+            return true
+        }
+        
+        
+        timerController.startTimer()
+        timerController.pauseTimer()
+        timerController.resumeTimer()
+        
+        waitForExpectations(timeout: 15) { error in
+            XCTAssertNil(error, "error should be nil")
+        }
+    }
+    
+}
+
+extension DevelopItModelTests: DevTimerDelegate {
+    
+    func changeTimerDisplay(_ valueToDisplay: String) {
+        print(valueToDisplay)
+    }
+    
+    
 }

@@ -26,6 +26,7 @@
                                         <state key="normal" title="Add"/>
                                         <connections>
                                             <action selector="addButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="UJr-8Z-50s"/>
+                                            <segue destination="NLX-Y1-8Po" kind="show" identifier="ShowAddTimer" id="VTU-cT-zs8"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F16-yz-gkE">
@@ -59,20 +60,35 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="1F9-fT-YxN"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uBp-Y2-4p8">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uBp-Y2-4p8">
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="g2f-Wk-81r">
-                                        <rect key="frame" x="0.0" y="8" width="100" height="100"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimerCell" id="g2f-Wk-81r" customClass="TimerCollectionViewCell" customModule="DevelopIt" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="12" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LW-U7-oId">
+                                                    <rect key="frame" x="12" y="41.5" width="76" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="8LW-U7-oId" firstAttribute="centerX" secondItem="g2f-Wk-81r" secondAttribute="centerX" id="68W-T1-ug4"/>
+                                            <constraint firstItem="8LW-U7-oId" firstAttribute="centerY" secondItem="g2f-Wk-81r" secondAttribute="centerY" id="ZEE-NI-8jt"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="timerTitleLabel" destination="8LW-U7-oId" id="Z8s-bx-ocf"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -187,6 +203,105 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avH-oL-WEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="588.40579710144937" y="-315.40178571428572"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="hjJ-uH-ica">
+            <objects>
+                <viewController id="NLX-Y1-8Po" customClass="AddTimerViewController" customModule="DevelopIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zZK-NK-h6r">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Timer Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mUP-5G-Q8C">
+                                <rect key="frame" x="8" y="112" width="398" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X42-Jx-e4g">
+                                <rect key="frame" x="8" y="208" width="398" height="216"/>
+                                <subviews>
+                                    <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPQ-90-wSP">
+                                        <rect key="frame" x="0.0" y="0.0" width="181.5" height="216"/>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eau-ZW-Vl6">
+                                        <rect key="frame" x="189.5" y="0.0" width="19.5" height="216"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="75"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s53-IR-lej">
+                                        <rect key="frame" x="217" y="0.0" width="181" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHW-1h-7XB">
+                                <rect key="frame" x="24" y="448" width="366" height="183"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agitation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSc-QN-RMU">
+                                        <rect key="frame" x="8" y="8" width="115.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Every 30 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMl-3u-9QE">
+                                        <rect key="frame" x="8" y="52" width="137" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="pfo-uR-O0X">
+                                        <rect key="frame" x="6" y="80.5" width="354" height="31"/>
+                                        <connections>
+                                            <action selector="slider:" destination="NLX-Y1-8Po" eventType="valueChanged" id="md8-hU-YE0"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="pfo-uR-O0X" firstAttribute="top" secondItem="NMl-3u-9QE" secondAttribute="bottom" constant="8" id="Dj2-bJ-Qh2"/>
+                                    <constraint firstItem="NMl-3u-9QE" firstAttribute="top" secondItem="QSc-QN-RMU" secondAttribute="bottom" constant="8" id="Fvn-mC-aor"/>
+                                    <constraint firstItem="QSc-QN-RMU" firstAttribute="top" secondItem="kHW-1h-7XB" secondAttribute="top" constant="8" id="HEN-Pk-i99"/>
+                                    <constraint firstItem="QSc-QN-RMU" firstAttribute="leading" secondItem="kHW-1h-7XB" secondAttribute="leading" constant="8" id="I26-bT-gq6"/>
+                                    <constraint firstAttribute="width" secondItem="kHW-1h-7XB" secondAttribute="height" multiplier="2:1" id="NiU-js-xLY"/>
+                                    <constraint firstItem="NMl-3u-9QE" firstAttribute="leading" secondItem="kHW-1h-7XB" secondAttribute="leading" constant="8" id="OaR-nC-t3E"/>
+                                    <constraint firstItem="pfo-uR-O0X" firstAttribute="leading" secondItem="kHW-1h-7XB" secondAttribute="leading" constant="8" id="XAf-vo-Jon"/>
+                                    <constraint firstAttribute="trailing" secondItem="pfo-uR-O0X" secondAttribute="trailing" constant="8" id="pi9-4y-mI4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="X42-Jx-e4g" secondAttribute="trailing" constant="8" id="BDE-xN-6kf"/>
+                            <constraint firstItem="X42-Jx-e4g" firstAttribute="leading" secondItem="c9m-OT-oHh" secondAttribute="leading" constant="8" id="FxH-vc-m6S"/>
+                            <constraint firstItem="mUP-5G-Q8C" firstAttribute="top" secondItem="c9m-OT-oHh" secondAttribute="top" constant="24" id="efZ-LA-Oar"/>
+                            <constraint firstItem="kHW-1h-7XB" firstAttribute="top" secondItem="X42-Jx-e4g" secondAttribute="bottom" constant="24" id="lFV-ic-AUw"/>
+                            <constraint firstItem="mUP-5G-Q8C" firstAttribute="leading" secondItem="c9m-OT-oHh" secondAttribute="leading" constant="8" id="lcN-a1-ahi"/>
+                            <constraint firstItem="c9m-OT-oHh" firstAttribute="trailing" secondItem="mUP-5G-Q8C" secondAttribute="trailing" constant="8" id="qM3-2D-s3A"/>
+                            <constraint firstItem="c9m-OT-oHh" firstAttribute="trailing" secondItem="kHW-1h-7XB" secondAttribute="trailing" constant="24" id="ssh-1c-Z6d"/>
+                            <constraint firstItem="kHW-1h-7XB" firstAttribute="leading" secondItem="c9m-OT-oHh" secondAttribute="leading" constant="24" id="vm4-Qe-IRe"/>
+                            <constraint firstItem="X42-Jx-e4g" firstAttribute="top" secondItem="mUP-5G-Q8C" secondAttribute="bottom" constant="8" id="wv7-Rf-gSq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="c9m-OT-oHh"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="eHJ-OA-z7P">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="o3N-o0-ELs">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="NLX-Y1-8Po" id="Red-x0-4aj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="agitationSecondsLabel" destination="NMl-3u-9QE" id="R8m-UE-Tas"/>
+                        <outlet property="agitationTimerSlider" destination="pfo-uR-O0X" id="nxJ-Mr-GDB"/>
+                        <outlet property="minutePickerView" destination="JPQ-90-wSP" id="SfU-O9-cAT"/>
+                        <outlet property="secondPickerView" destination="s53-IR-lej" id="Kvy-Y4-nGd"/>
+                        <outlet property="timerTitleTextView" destination="mUP-5G-Q8C" id="ALb-b0-aeR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uIl-gL-fyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305.7971014492755" y="-315.40178571428572"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wnv-dD-Eof">

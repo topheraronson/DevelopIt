@@ -11,7 +11,7 @@ import CoreData
 
 class TimerModelController {
     
-    func createPreset(title: String,
+    func createTimer(title: String,
                       timerLength: Int16,
                       agitateTimer: Int16,
                       context: NSManagedObjectContext) -> Timer {

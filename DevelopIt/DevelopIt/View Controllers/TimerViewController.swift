@@ -20,10 +20,24 @@ class TimerViewController: UIViewController {
     @IBOutlet var timerForAgitation: UILabel!
     @IBOutlet var collectionView: UICollectionView!
     
+    // MARK: - Properties
+    var timerController: DevTimer?
+    var currentPreset: Preset?
+    var presetModelController = PresetModelController()
+    var timerModelController = TimerModelController()
+    
+    //Test Data
+    let timerNames = ["Developer", "Stop", "Fix", "Rinse"]
+    
     // MARK: - Life Cycle Views
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        currentPreset = presetModelController.createPreset(context: CoreDataStack.shared.mainContext)
+        
+        
     }
 
     @IBAction func restartButtonTapped(_ sender: Any) {
@@ -43,5 +57,34 @@ class TimerViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
     }
+}
+
+extension TimerViewController: DevTimerDelegate {
+    
+    func changeTimerDisplay(_ valueToDisplay: String) {
+        timerLabel.text = valueToDisplay
+    }
+    
+}
+
+extension TimerViewController: UICollectionViewDelegate {
+    
+}
+
+extension TimerViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return timerNames.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimerCell", for: indexPath) as? TimerCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.timerTitleLabel.text = timerNames[indexPath.item]
+        
+        return cell
+    }
+    
 }
 
