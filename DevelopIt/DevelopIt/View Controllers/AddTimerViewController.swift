@@ -97,6 +97,8 @@ extension AddTimerViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        timerTitleTextField.resignFirstResponder()
+        
         if pickerView.tag == 1 {
             minutes = Int(pickerData[row])
         } else {
