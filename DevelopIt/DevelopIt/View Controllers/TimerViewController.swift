@@ -75,6 +75,31 @@ extension TimerViewController: DevTimerDelegate {
 
 extension TimerViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let timer = currentPreset?.timers?[indexPath.item] as? Timer else { return }
+        let timerFormatter = DateComponentsFormatter()
+        let agitateTimer = DateComponentsFormatter()
+        let timerInterval = TimeInterval(timer.timerLength)
+        let agitateInterval = TimeInterval(timer.agitateTimer)
+        
+        timerFormatter.allowedUnits = [.minute, .second]
+        timerFormatter.unitsStyle = .positional
+        timerFormatter.zeroFormattingBehavior = .pad
+        
+        agitateTimer.allowedUnits = [.second]
+        agitateTimer.unitsStyle = .spellOut
+        
+        let timerDisplay = timerFormatter.string(from: timerInterval)
+        timerLabel.text = timerDisplay
+        
+        timerTitleLabel.text = timer.title
+        
+        guard let agitateSecondsDisplay = agitateTimer.string(from: agitateInterval) else { return }
+        let agitateDisplay = "Evey \(agitateSecondsDisplay)"
+        
+        secondsInAgitationTimer.text = agitateDisplay
+    }
 }
 
 extension TimerViewController: UICollectionViewDataSource {

@@ -145,14 +145,6 @@
                                 <rect key="frame" x="116" y="398" width="50" height="30"/>
                                 <state key="normal" title="Restart"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvS-a9-xbj">
-                                <rect key="frame" x="116" y="398" width="50" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Restart"/>
-                                <connections>
-                                    <action selector="restartButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="TCW-Df-XgW"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d40-82-O1e">
                                 <rect key="frame" x="248" y="398" width="32" height="30"/>
                                 <state key="normal" title="Next"/>
@@ -192,7 +184,6 @@
                     <connections>
                         <outlet property="collectionView" destination="hDP-DP-pLw" id="yVP-Qn-alO"/>
                         <outlet property="nextButton" destination="d40-82-O1e" id="Dl6-XE-1Z7"/>
-                        <outlet property="restartButton" destination="xvS-a9-xbj" id="l9T-Qs-a7b"/>
                         <outlet property="secondsInAgitationTimer" destination="epo-Hu-iKH" id="hXa-6W-r9b"/>
                         <outlet property="startButton" destination="Ox0-50-Bey" id="FtV-h7-PUp"/>
                         <outlet property="timerForAgitation" destination="zgB-g3-72M" id="FBL-AB-sRE"/>
