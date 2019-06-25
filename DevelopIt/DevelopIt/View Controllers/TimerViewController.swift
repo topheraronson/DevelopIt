@@ -26,9 +26,6 @@ class TimerViewController: UIViewController {
     var presetModelController = PresetModelController()
     var timerModelController = TimerModelController()
     
-    //Test Data
-    let timerNames = ["Developer", "Stop", "Fix", "Rinse"]
-    
     // MARK: - Life Cycle Views
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,14 +80,16 @@ extension TimerViewController: UICollectionViewDelegate {
 extension TimerViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return timerNames.count
+        return currentPreset?.timers?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimerCell", for: indexPath) as? TimerCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.timerTitleLabel.text = timerNames[indexPath.item]
+        guard let currentTimer = currentPreset?.timers?[indexPath.item] as? Timer else { return cell }
+        
+        cell.timerTitleLabel.text = currentTimer.title
         
         return cell
     }
@@ -102,6 +101,15 @@ extension TimerViewController: AddTimerViewControllerDelegate {
     func addTimerToPreset(timer: Timer) {
         
         currentPreset?.addToTimers(timer)
+        
+        guard var count = currentPreset?.timers?.count else { return }
+        
+        if count > 0 {
+            count -= 1
+        }
+        
+        let indexPath = IndexPath(item: count, section: 0)
+        collectionView.insertItems(at: [indexPath])
     }
 }
 
