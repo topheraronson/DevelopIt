@@ -25,7 +25,11 @@ class TimerModelController {
         context.delete(timer)
     }
     
-    func update(timer: Timer, title: String?, minutesLength: Int16?, secondsLength: Int16?, agitateTimer: Int16?) {
+    func update(timer: Timer,
+                title: String?,
+                minutesLength: Int16?,
+                secondsLength: Int16?,
+                agitateTimer: Int16?) -> Timer {
         
         if let title = title {
             timer.title = title
@@ -42,6 +46,8 @@ class TimerModelController {
         if let agitateTimer = agitateTimer {
             timer.agitateTimer = agitateTimer
         }
+        
+        return timer
     }
     
 }

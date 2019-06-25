@@ -11,6 +11,8 @@ import UIKit
 // MARK: - Delegate protocol for passing timer back to preset
 protocol AddTimerViewControllerDelegate: class {
     func addTimerToPreset(timer: Timer)
+    
+    func updateTimer(indexPath: IndexPath, timer: Timer)
 }
 
 class AddTimerViewController: UIViewController {
@@ -26,6 +28,7 @@ class AddTimerViewController: UIViewController {
     private var minutes: Int?
     private var seconds: Int?
     weak var currentTimer: Timer?
+    var indexPathForCurrentTimer: IndexPath?
     weak var timerModelController: TimerModelController?
     weak var delegate: AddTimerViewControllerDelegate?
     
@@ -48,17 +51,16 @@ class AddTimerViewController: UIViewController {
         timerTitleTextField.delegate = self
         
         // TODO: - Put in a seperate method
+        // TODO: - Fix picker view loading issue
         if let currentTimer = currentTimer {
             
             timerTitleTextField.text = currentTimer.title
             
-            let numberOfMinutes = "\(currentTimer.minutesLength / 60)"
-            guard let minuteIndex = pickerData.firstIndex(of: numberOfMinutes) else { return }
-            minutePickerView.selectRow(minuteIndex, inComponent: 0, animated: true)
+            let minutesIndex = Int(currentTimer.minutesLength / 60)
+            minutePickerView.selectRow(minutesIndex, inComponent: 0, animated: true)
             
-            let numberOfSeconds = "\(currentTimer.secondsLength)"
-            guard let secondIndex = pickerData.firstIndex(of: numberOfSeconds) else { return }
-            minutePickerView.selectRow(secondIndex, inComponent: 0, animated: true)
+            let secondIndex = Int(currentTimer.secondsLength)
+            secondPickerView.selectRow(secondIndex, inComponent: 0, animated: true)
             
             agitationTimerSlider.value = Float(currentTimer.agitateTimer)
             
@@ -119,18 +121,23 @@ class AddTimerViewController: UIViewController {
         
         let minutes = self.minutes ?? 0
         let seconds = self.seconds ?? 0
-        
+        // TODO: - Handle picker not changing
         let minuteInterval = Int16(minutes * 60)
         let secondInterval = Int16(seconds)
         let agitateTimer = Int16(agitationTimerSlider.value)
         
-        if let currentTimer = currentTimer {
+        if let currentTimer = currentTimer, let timerModelController = timerModelController  {
             
-            timerModelController?.update(timer: currentTimer,
-                                         title: title,
-                                         minutesLength: minuteInterval,
-                                         secondsLength: secondInterval,
-                                         agitateTimer: agitateTimer)
+            let timerToReturn = timerModelController.update(timer: currentTimer,
+                                                         title: title,
+                                                         minutesLength: minuteInterval,
+                                                         secondsLength: secondInterval,
+                                                         agitateTimer: agitateTimer)
+            
+            guard let indexPath = indexPathForCurrentTimer else { return }
+            
+            delegate?.updateTimer(indexPath: indexPath, timer: timerToReturn)
+            
         } else {
             
             let timer = timerModelController!.createTimer(title: title,

@@ -48,15 +48,26 @@ class TimerViewController: UIViewController {
             destination.timerModelController = timerModelController
             destination.delegate = self
         } else if segue.identifier == "ShowEditTimer" {
-            let destination = segue.destination as! AddTimerViewController
-            destination.currentTimer = sender as? Timer
+//            let destination = segue.destination as! AddTimerViewController
+//            destination.currentTimer = sender as? Timer
+            
+            if let indexPaths = collectionView.indexPathsForSelectedItems {
+                let indexPath = indexPaths[0] as IndexPath
+                let destination = segue.destination as! AddTimerViewController
+                
+                destination.currentTimer = currentPreset?.timers?[indexPath.item] as? Timer
+                destination.indexPathForCurrentTimer = indexPath
+                destination.timerModelController = timerModelController
+                destination.delegate = self
+            }
+            
+            
+            
         }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        
-        
     }
 
     // MARK: - IBActions
@@ -64,7 +75,8 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func startButtonTapped(_ sender: Any) {
-        timerController?.startTimer()
+        
+        
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
@@ -108,6 +120,7 @@ extension TimerViewController: UICollectionViewDelegate {
         
         if isEditing {
             
+            self.setEditing(false, animated: true)
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
             let editAction = UIAlertAction(title: "Edit", style: .default) { [unowned self] _ in
@@ -121,8 +134,11 @@ extension TimerViewController: UICollectionViewDelegate {
                 print("Deleted")
             }
             
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            
             alertController.addAction(editAction)
             alertController.addAction(deleteAction)
+            alertController.addAction(cancelAction)
             
             present(alertController, animated: true)
         } else {
@@ -184,6 +200,11 @@ extension TimerViewController: AddTimerViewControllerDelegate {
         
         let indexPath = IndexPath(item: count, section: 0)
         collectionView.insertItems(at: [indexPath])
+    }
+    
+    func updateTimer(indexPath: IndexPath, timer: Timer) {
+        currentPreset?.replaceTimers(at: indexPath.item, with: timer)
+        collectionView.reloadData()
     }
 }
 
