@@ -7,12 +7,13 @@
     </entity>
     <entity name="Timer" representedClassName="Timer" syncable="YES">
         <attribute name="agitateTimer" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="60" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="timerLength" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="3600" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="minutesLength" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="3600" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="secondsLength" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="preset" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preset" inverseName="timers" inverseEntity="Preset" syncable="YES"/>
     </entity>
     <elements>
         <element name="Preset" positionX="-277.79296875" positionY="-22.25390625" width="142.671875" height="90"/>
-        <element name="Timer" positionX="42.859375" positionY="84.84375" width="128" height="103"/>
+        <element name="Timer" positionX="42.859375" positionY="84.84375" width="128" height="120"/>
     </elements>
 </model>

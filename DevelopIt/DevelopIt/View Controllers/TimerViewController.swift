@@ -91,7 +91,7 @@ extension TimerViewController: UICollectionViewDelegate {
         guard let timer = currentPreset?.timers?[indexPath.item] as? Timer else { return }
         let timerFormatter = DateComponentsFormatter()
         let agitateTimer = DateComponentsFormatter()
-        let timerInterval = TimeInterval(timer.timerLength)
+        let timerInterval = TimeInterval(timer.minutesLength + timer.secondsLength)
         let agitateInterval = TimeInterval(timer.agitateTimer)
         
         timerFormatter.allowedUnits = [.minute, .second]
@@ -111,7 +111,7 @@ extension TimerViewController: UICollectionViewDelegate {
         
         secondsInAgitationTimer.text = agitateDisplay
         
-        timerController = DevTimer(mainTimerDuration: Int(timer.timerLength),
+        timerController = DevTimer(mainTimerDuration: Int(timer.minutesLength + timer.secondsLength),
                                    agitateTimerDuration: Int(timer.agitateTimer))
         timerController?.delegate = self
     }

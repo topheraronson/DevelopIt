@@ -94,11 +94,13 @@ class AddTimerViewController: UIViewController {
         let minutes = self.minutes ?? 0
         let seconds = self.seconds ?? 0
         
-        let timeInterval = Int16((minutes * 60) + seconds)
+        let minuteInterval = Int16(minutes * 60)
+        let secondInterval = Int16(seconds)
         let agitateTimer = Int16(agitationTimerSlider.value)
         
         let timer = timerModelController!.createTimer(title: title,
-                                                      timerLength: timeInterval,
+                                                      minutesLength: minuteInterval,
+                                                      secondsLength: secondInterval,
                                                       agitateTimer: agitateTimer,
                                                       context: CoreDataStack.shared.mainContext)
         

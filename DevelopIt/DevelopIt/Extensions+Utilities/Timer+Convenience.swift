@@ -11,14 +11,16 @@ import CoreData
 
 extension Timer {
     convenience init(title: String,
-                     timerLength: Int16,
+                     minutesLength: Int16,
+                     secondsLength: Int16,
                      agitateTimer: Int16,
                      context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         
         self.init(context: context)
         
         self.title = title
-        self.timerLength = timerLength
+        self.minutesLength = minutesLength
+        self.secondsLength = secondsLength
         self.agitateTimer = agitateTimer
     }
 }

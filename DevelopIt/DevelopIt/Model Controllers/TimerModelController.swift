@@ -12,11 +12,12 @@ import CoreData
 class TimerModelController {
     
     func createTimer(title: String,
-                      timerLength: Int16,
+                      minutesLength: Int16,
+                      secondsLength: Int16,
                       agitateTimer: Int16,
                       context: NSManagedObjectContext) -> Timer {
         
-        return Timer(title: title, timerLength: timerLength, agitateTimer: agitateTimer, context: context)
+        return Timer(title: title, minutesLength: minutesLength, secondsLength: secondsLength, agitateTimer: agitateTimer, context: context)
     }
     
     func delete(timer: Timer, context: NSManagedObjectContext) {
@@ -24,14 +25,18 @@ class TimerModelController {
         context.delete(timer)
     }
     
-    func update(timer: Timer, title: String?, timerLength: Int16?, agitateTimer: Int16?) {
+    func update(timer: Timer, title: String?, minutesLength: Int16?, secondsLength: Int16?, agitateTimer: Int16?) {
         
         if let title = title {
             timer.title = title
         }
         
-        if let timerLength = timerLength {
-            timer.timerLength = timerLength
+        if let minutesLength = minutesLength {
+            timer.minutesLength = minutesLength
+        }
+        
+        if let secondsLength = secondsLength {
+            timer.secondsLength = secondsLength
         }
         
         if let agitateTimer = agitateTimer {

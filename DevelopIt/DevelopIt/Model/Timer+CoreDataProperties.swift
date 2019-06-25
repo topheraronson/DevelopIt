@@ -1,8 +1,9 @@
 //
 //  Timer+CoreDataProperties.swift
-//  
+//  DevelopIt
 //
-//  Created by Christopher Aronson on 6/24/19.
+//  Created by Christopher Aronson on 6/25/19.
+//  Copyright © 2019 Christopher Aronson. All rights reserved.
 //
 //
 
@@ -17,8 +18,9 @@ extension Timer {
     }
 
     @NSManaged public var agitateTimer: Int16
-    @NSManaged public var timerLength: Int16
+    @NSManaged public var minutesLength: Int16
     @NSManaged public var title: String?
+    @NSManaged public var secondsLength: Int16
     @NSManaged public var preset: Preset?
 
 }
