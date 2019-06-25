@@ -100,7 +100,8 @@ extension TimerViewController: UICollectionViewDataSource {
 extension TimerViewController: AddTimerViewControllerDelegate {
     
     func addTimerToPreset(timer: Timer) {
-        print(timer)
+        
+        currentPreset?.addToTimers(timer)
     }
 }
 
