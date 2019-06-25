@@ -28,10 +28,14 @@ class AddTimerViewController: UIViewController {
     weak var currentTimer: Timer?
     weak var timerModelController: TimerModelController?
     weak var delegate: AddTimerViewControllerDelegate?
-    private let pickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
-                              "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-                              "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45",
-                              "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]
+    
+    // TODO: - Clean this up...Perhaps put in another file or something?
+    private let pickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                              "10", "11", "12", "13", "14", "15","16", "17", "18", "19",
+                              "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
+                              "30","31", "32", "33", "34", "35", "36", "37", "38", "39",
+                              "40", "41", "42", "43", "44", "45", "46", "47", "48", "49",
+                              "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]
     
     // MARK: - Life Cycle Functions
     override func viewDidLoad() {
@@ -43,12 +47,33 @@ class AddTimerViewController: UIViewController {
         secondPickerView.dataSource = self
         timerTitleTextField.delegate = self
         
+        // TODO: - Put in a seperate method
         if let currentTimer = currentTimer {
             
             timerTitleTextField.text = currentTimer.title
             
+            let numberOfMinutes = "\(currentTimer.minutesLength / 60)"
+            guard let minuteIndex = pickerData.firstIndex(of: numberOfMinutes) else { return }
+            minutePickerView.selectRow(0, inComponent: minuteIndex, animated: true)
+            
+            let numberOfSeconds = "\(currentTimer.secondsLength)"
+            guard let secondIndex = pickerData.firstIndex(of: numberOfSeconds) else { return }
+            minutePickerView.selectRow(0, inComponent: secondIndex, animated: true)
+            
+            agitationTimerSlider.value = Float(currentTimer.agitateTimer)
+            
+            if agitationTimerSlider.value == 0 {
+                agitationSecondsLabel.text = "No Agitation"
+            } else if agitationTimerSlider.value < 2 {
+                agitationSecondsLabel.text = "Every Second"
+            } else {
+                agitationSecondsLabel.text = "Every \(Int(agitationTimerSlider.value)) seconds"
+            }
+        } else {
+            agitationSecondsLabel.text = "No Agitation"
         }
-        agitationSecondsLabel.text = "No Agitation"
+        
+        
         setupKeyboardDismissRecognizer()
         
     }
@@ -91,6 +116,7 @@ class AddTimerViewController: UIViewController {
             return
         }
         
+        
         let minutes = self.minutes ?? 0
         let seconds = self.seconds ?? 0
         
@@ -98,13 +124,24 @@ class AddTimerViewController: UIViewController {
         let secondInterval = Int16(seconds)
         let agitateTimer = Int16(agitationTimerSlider.value)
         
-        let timer = timerModelController!.createTimer(title: title,
-                                                      minutesLength: minuteInterval,
-                                                      secondsLength: secondInterval,
-                                                      agitateTimer: agitateTimer,
-                                                      context: CoreDataStack.shared.mainContext)
+        if let currentTimer = currentTimer {
+            
+            timerModelController?.update(timer: currentTimer,
+                                         title: title,
+                                         minutesLength: minuteInterval,
+                                         secondsLength: secondInterval,
+                                         agitateTimer: agitateTimer)
+        } else {
+            
+            let timer = timerModelController!.createTimer(title: title,
+                                                          minutesLength: minuteInterval,
+                                                          secondsLength: secondInterval,
+                                                          agitateTimer: agitateTimer,
+                                                          context: CoreDataStack.shared.mainContext)
+            
+            delegate?.addTimerToPreset(timer: timer)
+        }
         
-        delegate?.addTimerToPreset(timer: timer)
         
         navigationController?.popToRootViewController(animated: true)
     }
