@@ -26,6 +26,7 @@ class TimerViewController: UIViewController {
     var presetModelController = PresetModelController()
     var timerModelController = TimerModelController()
     
+    
     // MARK: - Life Cycle Views
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,8 @@ class TimerViewController: UIViewController {
         collectionView.dataSource = self
         
         currentPreset = presetModelController.createPreset(context: CoreDataStack.shared.mainContext)
+        
+        navigationItem.leftBarButtonItem = editButtonItem
         
     }
     
@@ -44,7 +47,16 @@ class TimerViewController: UIViewController {
             let destination = segue.destination as! AddTimerViewController
             destination.timerModelController = timerModelController
             destination.delegate = self
+        } else if segue.identifier == "ShowEditTimer" {
+            let destination = segue.destination as! AddTimerViewController
+            destination.currentTimer = sender as? Timer
         }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        
     }
 
     // MARK: - IBActions
@@ -94,26 +106,48 @@ extension TimerViewController: UICollectionViewDelegate {
         let timerInterval = TimeInterval(timer.minutesLength + timer.secondsLength)
         let agitateInterval = TimeInterval(timer.agitateTimer)
         
-        timerFormatter.allowedUnits = [.minute, .second]
-        timerFormatter.unitsStyle = .positional
-        timerFormatter.zeroFormattingBehavior = .pad
-        
-        agitateTimer.allowedUnits = [.second]
-        agitateTimer.unitsStyle = .spellOut
-        
-        let timerDisplay = timerFormatter.string(from: timerInterval)
-        timerLabel.text = timerDisplay
-        
-        timerTitleLabel.text = timer.title
-        
-        guard let agitateSecondsDisplay = agitateTimer.string(from: agitateInterval) else { return }
-        let agitateDisplay = "Evey \(agitateSecondsDisplay)"
-        
-        secondsInAgitationTimer.text = agitateDisplay
-        
-        timerController = DevTimer(mainTimerDuration: Int(timer.minutesLength + timer.secondsLength),
-                                   agitateTimerDuration: Int(timer.agitateTimer))
-        timerController?.delegate = self
+        if isEditing {
+            
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            let editAction = UIAlertAction(title: "Edit", style: .default) { [unowned self] _ in
+                
+                guard let timer = self.currentPreset?.timers?[indexPath.item] else { return }
+                
+                self.performSegue(withIdentifier: "ShowEditTimer", sender: timer)
+            }
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                print("Deleted")
+            }
+            
+            alertController.addAction(editAction)
+            alertController.addAction(deleteAction)
+            
+            present(alertController, animated: true)
+        } else {
+            timerFormatter.allowedUnits = [.minute, .second]
+            timerFormatter.unitsStyle = .positional
+            timerFormatter.zeroFormattingBehavior = .pad
+            
+            agitateTimer.allowedUnits = [.second]
+            agitateTimer.unitsStyle = .spellOut
+            
+            let timerDisplay = timerFormatter.string(from: timerInterval)
+            timerLabel.text = timerDisplay
+            
+            timerTitleLabel.text = timer.title
+            
+            guard let agitateSecondsDisplay = agitateTimer.string(from: agitateInterval) else { return }
+            let agitateDisplay = "Evey \(agitateSecondsDisplay)"
+            
+            secondsInAgitationTimer.text = agitateDisplay
+            
+            timerController = DevTimer(mainTimerDuration: Int(timer.minutesLength + timer.secondsLength),
+                                       agitateTimerDuration: Int(timer.agitateTimer))
+            timerController?.delegate = self
+        }
+
     }
 }
 

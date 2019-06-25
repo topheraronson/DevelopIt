@@ -54,11 +54,11 @@ class AddTimerViewController: UIViewController {
             
             let numberOfMinutes = "\(currentTimer.minutesLength / 60)"
             guard let minuteIndex = pickerData.firstIndex(of: numberOfMinutes) else { return }
-            minutePickerView.selectRow(0, inComponent: minuteIndex, animated: true)
+            minutePickerView.selectRow(minuteIndex, inComponent: 0, animated: true)
             
             let numberOfSeconds = "\(currentTimer.secondsLength)"
             guard let secondIndex = pickerData.firstIndex(of: numberOfSeconds) else { return }
-            minutePickerView.selectRow(0, inComponent: secondIndex, animated: true)
+            minutePickerView.selectRow(secondIndex, inComponent: 0, animated: true)
             
             agitationTimerSlider.value = Float(currentTimer.agitateTimer)
             
