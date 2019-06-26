@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SideMenu
 
 class MenuTableViewController: UITableViewController {
 
@@ -18,6 +19,8 @@ class MenuTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        SideMenuManager.defaultManager.menuPresentMode = .menuSlideIn
         
         fetchRequest = Preset.fetchRequest()
         fetchRequest?.includesPendingChanges = false
