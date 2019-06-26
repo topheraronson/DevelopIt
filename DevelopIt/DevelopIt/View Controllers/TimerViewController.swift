@@ -92,6 +92,11 @@ class TimerViewController: UIViewController {
     
     @IBAction func nextButtonTapped(_ sender: Any) {
         
+        // TODO: - Disable button when at last cell
+
+        let indexPath = IndexPath(item: indexForRunningTimer, section: 0)
+        
+        loadFromCell(indexPath: indexPath)
     }
     
     @IBAction func createButtonTapped(_ sender: Any) {
@@ -124,72 +129,84 @@ extension TimerViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        timerController?.stopTimer()
+        // TODO: - Make enum for button and a didset to watch running state
+        startButton.setTitle("Start", for: .normal)
+        
+        if isEditing {
+            
+            editCell(indexPath: indexPath)
+        } else {
+            
+            loadFromCell(indexPath: indexPath)
+        }
+    }
+    
+}
+
+extension TimerViewController {
+    
+    func loadFromCell(indexPath: IndexPath) {
+        
         guard let timer = currentPreset?.timers?[indexPath.item] as? Timer else { return }
         let timerFormatter = DateComponentsFormatter()
         let agitateTimer = DateComponentsFormatter()
         let timerInterval = TimeInterval(timer.minutesLength + timer.secondsLength)
         let agitateInterval = TimeInterval(timer.agitateTimer)
         
-        if let timerController = timerController {
-            timerController.stopTimer()
+        indexForRunningTimer = indexPath.item + 1
+        
+        timerFormatter.allowedUnits = [.minute, .second]
+        timerFormatter.unitsStyle = .positional
+        timerFormatter.zeroFormattingBehavior = .pad
+        
+        agitateTimer.allowedUnits = [.second]
+        agitateTimer.unitsStyle = .spellOut
+        
+        let timerDisplay = timerFormatter.string(from: timerInterval)
+        timerLabel.text = timerDisplay
+        
+        timerTitleLabel.text = timer.title
+        
+        guard let agitateSecondsDisplay = agitateTimer.string(from: agitateInterval) else { return }
+        let agitateDisplay = "Evey \(agitateSecondsDisplay)"
+        
+        secondsInAgitationTimer.text = agitateDisplay
+        
+        timerController = TimerController(mainTimerDuration: Int(timer.minutesLength + timer.secondsLength),
+                                          agitateTimerDuration: Int(timer.agitateTimer))
+        timerController?.delegate = self
+    }
+    
+    func editCell(indexPath: IndexPath) {
+        
+        self.setEditing(false, animated: true)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let editAction = UIAlertAction(title: "Edit", style: .default) { [unowned self] _ in
+            
+            guard let timer = self.currentPreset?.timers?[indexPath.item] else { return }
+            
+            self.performSegue(withIdentifier: "ShowEditTimer", sender: timer)
         }
         
-        startButton.setTitle("Start", for: .normal)
-        if isEditing {
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in
             
-            self.setEditing(false, animated: true)
-            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            
-            let editAction = UIAlertAction(title: "Edit", style: .default) { [unowned self] _ in
-                
-                guard let timer = self.currentPreset?.timers?[indexPath.item] else { return }
-                
-                self.performSegue(withIdentifier: "ShowEditTimer", sender: timer)
+            if let indexPaths = self.collectionView.indexPathsForSelectedItems {
+                let indexPath = indexPaths[0]
+                guard let timer = self.currentPreset?.timers?[indexPath.item] as? Timer else { return }
+                self.currentPreset?.removeFromTimers(timer)
+                self.collectionView.reloadData()
             }
-            
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in
-                
-                if let indexPaths = collectionView.indexPathsForSelectedItems {
-                    let indexPath = indexPaths[0]
-                    guard let timer = self.currentPreset?.timers?[indexPath.item] as? Timer else { return }
-                    self.currentPreset?.removeFromTimers(timer)
-                    self.collectionView.reloadData()
-                }
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-            
-            alertController.addAction(editAction)
-            alertController.addAction(deleteAction)
-            alertController.addAction(cancelAction)
-            
-            present(alertController, animated: true)
-        } else {
-            
-            indexForRunningTimer = indexPath.item
-            
-            timerFormatter.allowedUnits = [.minute, .second]
-            timerFormatter.unitsStyle = .positional
-            timerFormatter.zeroFormattingBehavior = .pad
-            
-            agitateTimer.allowedUnits = [.second]
-            agitateTimer.unitsStyle = .spellOut
-            
-            let timerDisplay = timerFormatter.string(from: timerInterval)
-            timerLabel.text = timerDisplay
-            
-            timerTitleLabel.text = timer.title
-            
-            guard let agitateSecondsDisplay = agitateTimer.string(from: agitateInterval) else { return }
-            let agitateDisplay = "Evey \(agitateSecondsDisplay)"
-            
-            secondsInAgitationTimer.text = agitateDisplay
-            
-            timerController = TimerController(mainTimerDuration: Int(timer.minutesLength + timer.secondsLength),
-                                       agitateTimerDuration: Int(timer.agitateTimer))
-            timerController?.delegate = self
         }
-
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(editAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
     }
 }
 
