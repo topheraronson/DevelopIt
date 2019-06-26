@@ -8,17 +8,20 @@
 
 import Foundation
 import AsyncTimer
+import AVFoundation
 
-protocol DevTimerDelegate: class {
+protocol TimerControllerDelegate: class {
     func changeTimerDisplay(_ valueToDisplay: Int)
 }
 
-class DevTimer {
+class TimerController {
     
     // MARK: - Public Properties
     var mainTimerDuration: Int
     var agitateTimerDuration: Int
-    weak var delegate: DevTimerDelegate?
+    weak var delegate: TimerControllerDelegate?
+    var alarmSound: AVAudioPlayer?
+    var agitateCounter = -1
     
     // MARK: - Private Properties
     private lazy var timer: AsyncTimer = {
@@ -28,8 +31,26 @@ class DevTimer {
             times: self.mainTimerDuration,
             block: { [weak self] value in
                 self?.delegate?.changeTimerDisplay(value)
+                self?.agitateCounter += 1
+                
+                if self?.agitateCounter == self?.agitateTimerDuration {
+                    let systemSound: SystemSoundID = 1016
+                    AudioServicesPlaySystemSound(systemSound)
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                    self?.agitateCounter = 0
+                }
             }, completion: { [weak self] in
                 NotificationCenter.default.post(name: .TimerDidFinish, object: nil)
+                let path = Bundle.main.path(forResource: "Gentle-wake-alarm-clock.mp3", ofType: nil)!
+                let url = URL(fileURLWithPath: path)
+                
+                do {
+                    self!.alarmSound = try AVAudioPlayer(contentsOf: url)
+                    self?.alarmSound?.play()
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                } catch {
+                    
+                }
             }
         )
     }()

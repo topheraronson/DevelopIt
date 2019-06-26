@@ -15,7 +15,7 @@ class DevelopItModelTests: XCTestCase {
     var coreDataStack: TestCoreDataStack!
     var presetModelController: PresetModelController!
     var timerModelController: TimerModelController!
-    var timerController: DevTimer!
+    var timerController: TimerController!
     var timerDisplay: Int!
     
     override func setUp() {
@@ -256,7 +256,7 @@ class DevelopItModelTests: XCTestCase {
     
     func testCreateAsyncTimer() {
         
-        timerController = DevTimer(mainTimerDuration: 60, agitateTimerDuration: 10)
+        timerController = TimerController(mainTimerDuration: 60, agitateTimerDuration: 10)
         
         XCTAssertNotNil(timerController)
         XCTAssertTrue(timerController.mainTimerDuration == 60)
@@ -265,7 +265,7 @@ class DevelopItModelTests: XCTestCase {
     
     func testStartAsyncTimer() {
         
-        timerController = DevTimer(mainTimerDuration: 10, agitateTimerDuration: 0)
+        timerController = TimerController(mainTimerDuration: 10, agitateTimerDuration: 0)
         timerController.delegate = self
         expectation(forNotification: .TimerDidFinish, object: nil) { notification in
             return true
@@ -282,7 +282,7 @@ class DevelopItModelTests: XCTestCase {
     
     func testPauseAsyncTimer() {
         
-        timerController = DevTimer(mainTimerDuration: 10, agitateTimerDuration: 0)
+        timerController = TimerController(mainTimerDuration: 10, agitateTimerDuration: 0)
         timerController.delegate = self
         let expectation = self.expectation(forNotification: .TimerDidFinish, object: nil) { notification in
             return true
@@ -301,7 +301,7 @@ class DevelopItModelTests: XCTestCase {
     
     func testResumeAsyncTimer() {
         
-        timerController = DevTimer(mainTimerDuration: 10, agitateTimerDuration: 0)
+        timerController = TimerController(mainTimerDuration: 10, agitateTimerDuration: 0)
         timerController.delegate = self
         expectation(forNotification: .TimerDidFinish, object: nil) { notification in
             return true
@@ -319,7 +319,7 @@ class DevelopItModelTests: XCTestCase {
     
 }
 
-extension DevelopItModelTests: DevTimerDelegate {
+extension DevelopItModelTests: TimerControllerDelegate {
     
     func changeTimerDisplay(_ valueToDisplay: String) {
         print(valueToDisplay)

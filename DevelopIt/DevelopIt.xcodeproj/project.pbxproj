@@ -26,6 +26,7 @@
 		EC5A7F8422BDC35A00C22DA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8222BDC35A00C22DA0 /* Main.storyboard */; };
 		EC5A7F8622BDC35F00C22DA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */; };
 		EC5A7F8922BDC35F00C22DA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC5A7F8722BDC35F00C22DA0 /* LaunchScreen.storyboard */; };
+		ECA8844D22C2FB3800C12A4C /* Gentle-wake-alarm-clock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA8844C22C2FB3800C12A4C /* Gentle-wake-alarm-clock.mp3 */; };
 		ECB341B822BDE1DB00693597 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECB341B722BDE1DB00693597 /* Pacifico.ttf */; };
 		ECF30FB922C0B6F40042680B /* Preset+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FB822C0B6F40042680B /* Preset+Convenience.swift */; };
 		ECF30FC322C0B8770042680B /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30FC222C0B8770042680B /* TestCoreDataStack.swift */; };
@@ -68,6 +69,7 @@
 		EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC5A7F8822BDC35F00C22DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC5A7F8A22BDC35F00C22DA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECA8844C22C2FB3800C12A4C /* Gentle-wake-alarm-clock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gentle-wake-alarm-clock.mp3"; sourceTree = "<group>"; };
 		ECB341B722BDE1DB00693597 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		ECF30FB822C0B6F40042680B /* Preset+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Preset+Convenience.swift"; sourceTree = "<group>"; };
 		ECF30FC222C0B8770042680B /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */,
 				EC5A7F8A22BDC35F00C22DA0 /* Info.plist */,
 				ECB341B722BDE1DB00693597 /* Pacifico.ttf */,
+				ECA8844C22C2FB3800C12A4C /* Gentle-wake-alarm-clock.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				EC5A7F8922BDC35F00C22DA0 /* LaunchScreen.storyboard in Resources */,
 				EC5A7F8622BDC35F00C22DA0 /* Assets.xcassets in Resources */,
 				ECB341B822BDE1DB00693597 /* Pacifico.ttf in Resources */,
+				ECA8844D22C2FB3800C12A4C /* Gentle-wake-alarm-clock.mp3 in Resources */,
 				EC5A7F8422BDC35A00C22DA0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

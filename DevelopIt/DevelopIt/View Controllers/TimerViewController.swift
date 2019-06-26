@@ -21,7 +21,7 @@ class TimerViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     
     // MARK: - Properties
-    var timerController: DevTimer?
+    var timerController: TimerController?
     var currentPreset: Preset?
     var presetModelController = PresetModelController()
     var timerModelController = TimerModelController()
@@ -104,7 +104,7 @@ class TimerViewController: UIViewController {
     }
 }
 
-extension TimerViewController: DevTimerDelegate {
+extension TimerViewController: TimerControllerDelegate {
     
     func changeTimerDisplay(_ valueToDisplay: Int) {
         
@@ -154,7 +154,6 @@ extension TimerViewController: UICollectionViewDelegate {
                     guard let timer = self.currentPreset?.timers?[indexPath.item] as? Timer else { return }
                     self.currentPreset?.removeFromTimers(timer)
                     self.collectionView.reloadData()
-                    
                 }
             }
             
@@ -186,7 +185,7 @@ extension TimerViewController: UICollectionViewDelegate {
             
             secondsInAgitationTimer.text = agitateDisplay
             
-            timerController = DevTimer(mainTimerDuration: Int(timer.minutesLength + timer.secondsLength),
+            timerController = TimerController(mainTimerDuration: Int(timer.minutesLength + timer.secondsLength),
                                        agitateTimerDuration: Int(timer.agitateTimer))
             timerController?.delegate = self
         }
