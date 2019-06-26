@@ -98,4 +98,6 @@ class TimerController {
 // TODO: - Move to its own file in extensions group
 extension Notification.Name {
     public static let TimerDidFinish = Notification.Name("TimerDidFinish")
+    
+    public static let TextFieldTextDidChange = NSNotification.Name("TextFieldTextDidChange")
 }

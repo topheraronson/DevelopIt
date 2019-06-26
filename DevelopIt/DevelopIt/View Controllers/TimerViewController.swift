@@ -27,6 +27,8 @@ class TimerViewController: UIViewController {
     var timerModelController = TimerModelController()
     var indexForRunningTimer = 0
     
+    var alertController: UIAlertController?
+    
     
     // MARK: - Life Cycle Views
     override func viewDidLoad() {
@@ -106,6 +108,38 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        alertController = UIAlertController(title: "Save", message: "Name Your Preset", preferredStyle: .alert)
+        
+        alertController?.addTextField(configurationHandler: { [weak self] (textField) -> Void in
+            textField.placeholder = "Enter Preset Name"
+            
+            textField.addTarget(self, action: #selector(self?.alertTextFieldDidChange(_:)), for: .editingChanged)
+        })
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+            
+            guard let presetName = self?.alertController?.textFields?[0].text,
+            let currentPreset = self?.currentPreset
+            else { return }
+            
+            self?.presetModelController.update(preset: currentPreset, with: presetName)
+            self?.presetModelController.save(preset: currentPreset, context: CoreDataStack.shared.mainContext)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        saveAction.isEnabled = false
+        
+        alertController?.addAction(saveAction)
+        alertController?.addAction(cancelAction)
+        
+        present(alertController!, animated: true)
+        
+    }
+    
+    @objc func alertTextFieldDidChange(_ sender: UITextField) {
+        alertController?.actions[0].isEnabled = sender.text!.count > 0
     }
 }
 
@@ -142,6 +176,47 @@ extension TimerViewController: UICollectionViewDelegate {
         }
     }
     
+}
+
+extension TimerViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return currentPreset?.timers?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimerCell", for: indexPath) as? TimerCollectionViewCell else { return UICollectionViewCell() }
+        
+        guard let currentTimer = currentPreset?.timers?[indexPath.item] as? Timer else { return cell }
+        
+        cell.timerTitleLabel.text = currentTimer.title
+        
+        return cell
+    }
+    
+}
+
+extension TimerViewController: AddTimerViewControllerDelegate {
+    
+    func addTimerToPreset(timer: Timer) {
+        
+        currentPreset?.addToTimers(timer)
+        
+        guard var count = currentPreset?.timers?.count else { return }
+        
+        if count > 0 {
+            count -= 1
+        }
+        
+        let indexPath = IndexPath(item: count, section: 0)
+        collectionView.insertItems(at: [indexPath])
+    }
+    
+    func updateTimer(indexPath: IndexPath, timer: Timer) {
+        currentPreset?.replaceTimers(at: indexPath.item, with: timer)
+        collectionView.reloadData()
+    }
 }
 
 extension TimerViewController {
@@ -209,45 +284,3 @@ extension TimerViewController {
         present(alertController, animated: true)
     }
 }
-
-extension TimerViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentPreset?.timers?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimerCell", for: indexPath) as? TimerCollectionViewCell else { return UICollectionViewCell() }
-        
-        guard let currentTimer = currentPreset?.timers?[indexPath.item] as? Timer else { return cell }
-        
-        cell.timerTitleLabel.text = currentTimer.title
-        
-        return cell
-    }
-    
-}
-
-extension TimerViewController: AddTimerViewControllerDelegate {
-    
-    func addTimerToPreset(timer: Timer) {
-        
-        currentPreset?.addToTimers(timer)
-        
-        guard var count = currentPreset?.timers?.count else { return }
-        
-        if count > 0 {
-            count -= 1
-        }
-        
-        let indexPath = IndexPath(item: count, section: 0)
-        collectionView.insertItems(at: [indexPath])
-    }
-    
-    func updateTimer(indexPath: IndexPath, timer: Timer) {
-        currentPreset?.replaceTimers(at: indexPath.item, with: timer)
-        collectionView.reloadData()
-    }
-}
-
