@@ -20,6 +20,7 @@ class MenuTableViewController: UITableViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         fetchRequest = Preset.fetchRequest()
+        fetchRequest?.includesPendingChanges = false
         fetchAndReload()
     }
     
@@ -54,6 +55,5 @@ class MenuTableViewController: UITableViewController {
             print("Could not fetch")
         }
     }
-
 
 }
