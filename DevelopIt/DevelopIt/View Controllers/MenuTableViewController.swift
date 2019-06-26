@@ -10,10 +10,15 @@ import UIKit
 import CoreData
 import SideMenu
 
+protocol MenuTableViewControllerDelegate: class {
+    func load(preset: Preset)
+}
+
 class MenuTableViewController: UITableViewController {
 
     var fetchRequest: NSFetchRequest<Preset>?
     var presets = [Preset]()
+    weak var delegate: MenuTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +50,12 @@ class MenuTableViewController: UITableViewController {
         cell.textLabel?.text = presets[indexPath.row].title
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        delegate?.load(preset: presets[indexPath.row])
+        dismiss(animated: true)
     }
     
     func fetchAndReload() {

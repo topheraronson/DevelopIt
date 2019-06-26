@@ -63,9 +63,11 @@ class TimerViewController: UIViewController {
                 destination.timerModelController = timerModelController
                 destination.delegate = self
             }
+        } else if segue.identifier == "ShowMenu" {
             
-            
-            
+            let navController = segue.destination as! UINavigationController
+            let destination = navController.topViewController as! MenuTableViewController
+            destination.delegate = self
         }
     }
     
@@ -217,6 +219,16 @@ extension TimerViewController: AddTimerViewControllerDelegate {
         currentPreset?.replaceTimers(at: indexPath.item, with: timer)
         collectionView.reloadData()
     }
+}
+
+extension TimerViewController: MenuTableViewControllerDelegate {
+    func load(preset: Preset) {
+        
+        currentPreset = preset
+        collectionView.reloadData() 
+    }
+    
+    
 }
 
 extension TimerViewController {

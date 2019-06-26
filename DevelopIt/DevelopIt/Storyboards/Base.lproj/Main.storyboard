@@ -41,7 +41,7 @@
                                         <state key="normal" title="Load"/>
                                         <connections>
                                             <action selector="createButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="pdj-3e-1qu"/>
-                                            <segue destination="d2h-5j-RJO" kind="presentation" id="XVP-FJ-Chw"/>
+                                            <segue destination="d2h-5j-RJO" kind="presentation" identifier="ShowMenu" id="XVP-FJ-Chw"/>
                                         </connections>
                                     </button>
                                 </subviews>
