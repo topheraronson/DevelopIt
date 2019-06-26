@@ -7,4 +7,5 @@ target 'DevelopIt' do
 
   # Pods for DevelopIt
   pod 'AsyncTimer', '~> 2.2'
+  pod 'SideMenu'
 end

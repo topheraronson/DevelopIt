@@ -1,16 +1,20 @@
 PODS:
   - AsyncTimer (2.2.0)
+  - SideMenu (5.0.3)
 
 DEPENDENCIES:
   - AsyncTimer (~> 2.2)
+  - SideMenu
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AsyncTimer
+    - SideMenu
 
 SPEC CHECKSUMS:
   AsyncTimer: d8512868a7f4de79f58b6962d590f04b8dab5f7a
+  SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
 
-PODFILE CHECKSUM: 062541b52774a8d476110c261efcd74652cd3303
+PODFILE CHECKSUM: 3c2ef15024ff36bbcd46ce844c388c2a06b92340
 
 COCOAPODS: 1.7.1
