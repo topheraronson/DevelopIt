@@ -37,10 +37,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwS-mQ-uaU">
-                                        <rect key="frame" x="82" y="8" width="46" height="30"/>
-                                        <state key="normal" title="Create"/>
+                                        <rect key="frame" x="94" y="8" width="34" height="30"/>
+                                        <state key="normal" title="Load"/>
                                         <connections>
                                             <action selector="createButtonTapped:" destination="JF4-5Q-TtB" eventType="touchUpInside" id="pdj-3e-1qu"/>
+                                            <segue destination="d2h-5j-RJO" kind="presentation" id="XVP-FJ-Chw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -199,6 +200,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avH-oL-WEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="588.40579710144937" y="-315.40178571428572"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="egA-gZ-HtV">
+            <objects>
+                <tableViewController id="PIB-hk-rE0" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Wta-qC-kto">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="h9h-lo-Thn">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h9h-lo-Thn" id="7sf-Ox-kRE">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PIB-hk-rE0" id="S8G-fy-LQP"/>
+                            <outlet property="delegate" destination="PIB-hk-rE0" id="BjM-cI-7nm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ke9-Lr-og7"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tt8-0I-gKb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="677" y="501"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="fLK-KQ-qW5">
+            <objects>
+                <navigationController id="d2h-5j-RJO" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CHr-ih-dvd">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="PIB-hk-rE0" kind="relationship" relationship="rootViewController" id="aIC-Bw-fIs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jw8-BG-oNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-241" y="501"/>
         </scene>
         <!--Title-->
         <scene sceneID="hjJ-uH-ica">
