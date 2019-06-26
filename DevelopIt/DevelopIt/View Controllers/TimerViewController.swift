@@ -25,6 +25,7 @@ class TimerViewController: UIViewController {
     var currentPreset: Preset?
     var presetModelController = PresetModelController()
     var timerModelController = TimerModelController()
+    var indexForRunningTimer = 0
     
     
     // MARK: - Life Cycle Views
@@ -72,14 +73,25 @@ class TimerViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func restartButtonTapped(_ sender: Any) {
+        timerController?.restartTimer()
     }
     
     @IBAction func startButtonTapped(_ sender: Any) {
         
-        
+        if timerController?.getTimerState() == TimerState.isStopped {
+            timerController?.startTimer()
+            startButton.setTitle("Pause", for: .normal)
+        } else if timerController?.getTimerState() == TimerState.isRunning {
+            timerController?.pauseTimer()
+            startButton.setTitle("Resume", for: .normal)
+        } else if timerController?.getTimerState() == TimerState.isPaused {
+            timerController?.resumeTimer()
+            startButton.setTitle("Pause", for: .normal)
+        }
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
+        
     }
     
     @IBAction func createButtonTapped(_ sender: Any) {
@@ -118,6 +130,11 @@ extension TimerViewController: UICollectionViewDelegate {
         let timerInterval = TimeInterval(timer.minutesLength + timer.secondsLength)
         let agitateInterval = TimeInterval(timer.agitateTimer)
         
+        if let timerController = timerController {
+            timerController.stopTimer()
+        }
+        
+        startButton.setTitle("Start", for: .normal)
         if isEditing {
             
             self.setEditing(false, animated: true)
@@ -130,8 +147,15 @@ extension TimerViewController: UICollectionViewDelegate {
                 self.performSegue(withIdentifier: "ShowEditTimer", sender: timer)
             }
             
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
-                print("Deleted")
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in
+                
+                if let indexPaths = collectionView.indexPathsForSelectedItems {
+                    let indexPath = indexPaths[0]
+                    guard let timer = self.currentPreset?.timers?[indexPath.item] as? Timer else { return }
+                    self.currentPreset?.removeFromTimers(timer)
+                    self.collectionView.reloadData()
+                    
+                }
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -142,6 +166,9 @@ extension TimerViewController: UICollectionViewDelegate {
             
             present(alertController, animated: true)
         } else {
+            
+            indexForRunningTimer = indexPath.item
+            
             timerFormatter.allowedUnits = [.minute, .second]
             timerFormatter.unitsStyle = .positional
             timerFormatter.zeroFormattingBehavior = .pad
