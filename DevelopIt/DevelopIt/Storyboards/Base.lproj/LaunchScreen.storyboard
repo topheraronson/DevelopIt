@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Pacifico.ttf">
-            <string>Pacifico</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -23,17 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Develop it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahL-99-se1">
-                                <rect key="frame" x="62.5" y="378" width="289" height="140"/>
-                                <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="75"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Develop.it" translatesAutoresizingMaskIntoConstraints="NO" id="8ct-Lp-icc">
+                                <rect key="frame" x="8" y="384" width="398" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="N7B-AD-Luh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ahL-99-se1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="g7H-jb-gpN"/>
-                            <constraint firstItem="ahL-99-se1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="vlp-d6-7tz"/>
+                            <constraint firstItem="8ct-Lp-icc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="OeE-D8-oqW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8ct-Lp-icc" secondAttribute="trailing" constant="8" id="fLZ-9M-Kds"/>
+                            <constraint firstItem="8ct-Lp-icc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zIO-Gl-TgK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -43,4 +39,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Develop.it" width="96.666664123535156" height="40.333332061767578"/>
+    </resources>
 </document>
