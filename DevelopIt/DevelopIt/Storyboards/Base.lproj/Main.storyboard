@@ -127,7 +127,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsu-9h-LlS">
-                                <rect key="frame" x="0.0" y="48" width="414" height="105"/>
+                                <rect key="frame" x="0.0" y="24" width="414" height="105"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins Medium" pointSize="75"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -198,7 +198,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer Title Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-d9-V38">
-                                <rect key="frame" x="8" y="153" width="398" height="24"/>
+                                <rect key="frame" x="8" y="129" width="398" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -217,7 +217,7 @@
                             <constraint firstItem="fsu-9h-LlS" firstAttribute="leading" secondItem="OA0-ep-bZU" secondAttribute="leading" id="U5e-KU-PcJ"/>
                             <constraint firstItem="dH5-ge-vl4" firstAttribute="leading" secondItem="OA0-ep-bZU" secondAttribute="leading" id="VSR-KR-KnA"/>
                             <constraint firstItem="SjY-Ee-WSa" firstAttribute="leading" secondItem="OA0-ep-bZU" secondAttribute="leading" constant="24" id="ZfX-mp-SGh"/>
-                            <constraint firstItem="fsu-9h-LlS" firstAttribute="top" secondItem="OA0-ep-bZU" secondAttribute="top" constant="48" id="ZoT-2B-XkC"/>
+                            <constraint firstItem="fsu-9h-LlS" firstAttribute="top" secondItem="OA0-ep-bZU" secondAttribute="top" constant="24" id="ZoT-2B-XkC"/>
                             <constraint firstItem="hDP-DP-pLw" firstAttribute="top" secondItem="NJv-Ac-1DE" secondAttribute="bottom" id="aH4-HC-uKe"/>
                             <constraint firstItem="pf5-d9-V38" firstAttribute="leading" secondItem="OA0-ep-bZU" secondAttribute="leading" constant="8" id="aol-Mm-pqF"/>
                             <constraint firstItem="hDP-DP-pLw" firstAttribute="trailing" secondItem="OA0-ep-bZU" secondAttribute="trailing" id="bUb-v4-B9r"/>
