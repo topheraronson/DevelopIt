@@ -73,6 +73,9 @@
 		ECA8844C22C2FB3800C12A4C /* Gentle-wake-alarm-clock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gentle-wake-alarm-clock.mp3"; sourceTree = "<group>"; };
 		ECB341B722BDE1DB00693597 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		ECD3933522C30EB2001A4C4A /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		ECF183C722C4266B006E0630 /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		ECF183C822C4266C006E0630 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		ECF183C922C4266C006E0630 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		ECF30FB822C0B6F40042680B /* Preset+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Preset+Convenience.swift"; sourceTree = "<group>"; };
 		ECF30FC222C0B8770042680B /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		ECF30FC422C0BD600042680B /* PresetModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetModelController.swift; sourceTree = "<group>"; };
@@ -173,6 +176,9 @@
 				EC5A7F8522BDC35F00C22DA0 /* Assets.xcassets */,
 				EC5A7F8A22BDC35F00C22DA0 /* Info.plist */,
 				ECB341B722BDE1DB00693597 /* Pacifico.ttf */,
+				ECF183C722C4266B006E0630 /* Poppins-Black.ttf */,
+				ECF183C822C4266C006E0630 /* Poppins-Medium.ttf */,
+				ECF183C922C4266C006E0630 /* Poppins-Regular.ttf */,
 				ECA8844C22C2FB3800C12A4C /* Gentle-wake-alarm-clock.mp3 */,
 			);
 			path = Resources;

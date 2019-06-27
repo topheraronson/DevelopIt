@@ -33,7 +33,7 @@ class TimerController {
                 self?.delegate?.changeTimerDisplay(value)
                 self?.agitateCounter += 1
                 
-                if self?.agitateCounter == self?.agitateTimerDuration {
+                if self?.agitateCounter == self?.agitateTimerDuration && self?.agitateCounter != 0 {
                     let systemSound: SystemSoundID = 1016
                     AudioServicesPlaySystemSound(systemSound)
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)

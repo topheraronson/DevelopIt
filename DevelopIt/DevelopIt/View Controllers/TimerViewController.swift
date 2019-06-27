@@ -19,6 +19,9 @@ class TimerViewController: UIViewController {
     @IBOutlet var secondsInAgitationTimer: UILabel!
     @IBOutlet var timerForAgitation: UILabel!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var agitateContainerView: UIView!
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet var iconContainerView: UIView!
     
     // MARK: - Properties
     var timerController: TimerController?
@@ -39,8 +42,17 @@ class TimerViewController: UIViewController {
         
         currentPreset = presetModelController.createPreset(context: CoreDataStack.shared.mainContext)
         
-        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.rightBarButtonItem = editButtonItem
         
+        agitateContainerView.backgroundColor = .white
+        agitateContainerView.layer.cornerRadius = 10
+        agitateContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+     
+        backgroundView.layer.cornerRadius = 10
+        backgroundView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        iconContainerView.layer.cornerRadius = 15
+        iconContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     // MARK: - Navigation
@@ -78,19 +90,20 @@ class TimerViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func restartButtonTapped(_ sender: Any) {
         timerController?.restartTimer()
+        startButton.setImage(#imageLiteral(resourceName: "pause-button"), for: .normal)
     }
     
     @IBAction func startButtonTapped(_ sender: Any) {
         
         if timerController?.getTimerState() == TimerState.isStopped {
             timerController?.startTimer()
-            startButton.setTitle("Pause", for: .normal)
+            startButton.setImage(#imageLiteral(resourceName: "pause-button"), for: .normal)
         } else if timerController?.getTimerState() == TimerState.isRunning {
             timerController?.pauseTimer()
-            startButton.setTitle("Resume", for: .normal)
+            startButton.setImage(#imageLiteral(resourceName: "play-button"), for: .normal)
         } else if timerController?.getTimerState() == TimerState.isPaused {
             timerController?.resumeTimer()
-            startButton.setTitle("Pause", for: .normal)
+            startButton.setImage(#imageLiteral(resourceName: "pause-button"), for: .normal)
         }
     }
     
@@ -140,6 +153,19 @@ class TimerViewController: UIViewController {
         
     }
     
+    @IBAction func buttonTouched(_ sender: UIButton) {
+        
+        UIButton.animate(withDuration: 0.2, animations: {
+            
+            sender.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        }, completion: { finish in
+            
+            UIButton.animate(withDuration: 0.2, animations: {
+            sender.transform = CGAffineTransform.identity
+            })
+        })
+    }
+    
     @objc func alertTextFieldDidChange(_ sender: UITextField) {
         alertController?.actions[0].isEnabled = sender.text!.count > 0
     }
@@ -167,7 +193,7 @@ extension TimerViewController: UICollectionViewDelegate {
         
         timerController?.stopTimer()
         // TODO: - Make enum for button and a didset to watch running state
-        startButton.setTitle("Start", for: .normal)
+        startButton.setImage(#imageLiteral(resourceName: "play-button"), for: .normal)
         
         if isEditing {
             
@@ -193,6 +219,9 @@ extension TimerViewController: UICollectionViewDataSource {
         guard let currentTimer = currentPreset?.timers?[indexPath.item] as? Timer else { return cell }
         
         cell.timerTitleLabel.text = currentTimer.title
+        
+        cell.layer.cornerRadius = 8
+        
         
         return cell
     }

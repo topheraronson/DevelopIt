@@ -11,4 +11,5 @@ import UIKit
 class TimerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var timerTitleLabel: UILabel!
+    
 }
