@@ -23,6 +23,7 @@ class AddTimerViewController: UIViewController {
     @IBOutlet var secondPickerView: UIPickerView!
     @IBOutlet var agitationSecondsLabel: UILabel!
     @IBOutlet var agitationTimerSlider: UISlider!
+    @IBOutlet var agitationContainerView: UIView!
     
     // MARK: - Properties
     private var minutes: Int?
@@ -52,6 +53,10 @@ class AddTimerViewController: UIViewController {
         secondPickerView.dataSource = self
         timerTitleTextField.delegate = self
         
+        agitationContainerView.backgroundColor = .white
+        agitationContainerView.layer.cornerRadius = 10
+        agitationContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
         // TODO: - Put in a seperate method
         // TODO: - Fix picker view loading issue
         if let currentTimer = currentTimer {
@@ -74,12 +79,21 @@ class AddTimerViewController: UIViewController {
                 agitationSecondsLabel.text = "Every \(Int(agitationTimerSlider.value)) seconds"
             }
         } else {
-            agitationSecondsLabel.text = "No Agitation"
+            agitationSecondsLabel.text = "Every 30 seconds"
         }
         
         
         setupKeyboardDismissRecognizer()
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super .viewDidLayoutSubviews()
+        
+        for i in [1, 2] {
+            minutePickerView.subviews[i].isHidden = true
+            secondPickerView.subviews[i].isHidden = true
+        }
     }
     
     // MARK: - Keyboard Dismissal Functoins
@@ -170,6 +184,30 @@ extension AddTimerViewController: UIPickerViewDelegate {
             seconds = Int(pickerData[row])
         }
     }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        var title = UILabel()
+        if let titleView = view {
+            title = titleView as! UILabel
+        }
+        title.font = UIFont.systemFont(ofSize: 80, weight: UIFont.Weight.bold)
+        title.textColor = UIColor.white
+        
+        if pickerView.tag == 1 {
+            title.textAlignment = .right
+        } else {
+            title.textAlignment = .left
+        }
+        title.text =  pickerData[row]
+        
+        
+        return title
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 81.0
+    }
 }
 
 // MARK: - Picker Data Source Extension, i.e. Display data methods
@@ -187,6 +225,8 @@ extension AddTimerViewController: UIPickerViewDataSource {
         
         return pickerData[row]
     }
+    
+    
     
 }
 

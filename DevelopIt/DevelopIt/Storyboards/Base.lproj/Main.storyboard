@@ -291,7 +291,7 @@
             </objects>
             <point key="canvasLocation" x="-241" y="501"/>
         </scene>
-        <!--Title-->
+        <!--Add Timer View Controller-->
         <scene sceneID="hjJ-uH-ica">
             <objects>
                 <viewController id="NLX-Y1-8Po" customClass="AddTimerViewController" customModule="DevelopIt" customModuleProvider="target" sceneMemberID="viewController">
@@ -299,20 +299,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X42-Jx-e4g">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="X42-Jx-e4g">
                                 <rect key="frame" x="8" y="120" width="398" height="216"/>
                                 <subviews>
                                     <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPQ-90-wSP">
-                                        <rect key="frame" x="0.0" y="0.0" width="181.5" height="216"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="216"/>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eau-ZW-Vl6">
                                         <rect key="frame" x="189.5" y="0.0" width="19.5" height="216"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="75"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s53-IR-lej">
-                                        <rect key="frame" x="217" y="0.0" width="181" height="216"/>
+                                        <rect key="frame" x="209" y="0.0" width="189" height="216"/>
                                     </pickerView>
                                 </subviews>
                             </stackView>
@@ -320,19 +320,26 @@
                                 <rect key="frame" x="24" y="360" width="366" height="183"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agitation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSc-QN-RMU">
-                                        <rect key="frame" x="8" y="8" width="115.5" height="36"/>
+                                        <rect key="frame" x="8" y="8" width="350" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Every 30 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMl-3u-9QE">
-                                        <rect key="frame" x="8" y="52" width="137" height="20.5"/>
+                                        <rect key="frame" x="8" y="52" width="350" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="pfo-uR-O0X">
-                                        <rect key="frame" x="6" y="80.5" width="354" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="pfo-uR-O0X" customClass="SliderDesignable" customModule="DevelopIt" customModuleProvider="target">
+                                        <rect key="frame" x="6" y="80.5" width="354" height="25"/>
+                                        <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="Thumb"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="trackWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="slider:" destination="NLX-Y1-8Po" eventType="valueChanged" id="md8-hU-YE0"/>
                                         </connections>
@@ -340,6 +347,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QSc-QN-RMU" secondAttribute="trailing" constant="8" id="2qT-TW-Jlt"/>
+                                    <constraint firstAttribute="trailing" secondItem="NMl-3u-9QE" secondAttribute="trailing" constant="8" id="BYv-E5-WrE"/>
                                     <constraint firstItem="pfo-uR-O0X" firstAttribute="top" secondItem="NMl-3u-9QE" secondAttribute="bottom" constant="8" id="Dj2-bJ-Qh2"/>
                                     <constraint firstItem="NMl-3u-9QE" firstAttribute="top" secondItem="QSc-QN-RMU" secondAttribute="bottom" constant="8" id="Fvn-mC-aor"/>
                                     <constraint firstItem="QSc-QN-RMU" firstAttribute="top" secondItem="kHW-1h-7XB" secondAttribute="top" constant="8" id="HEN-Pk-i99"/>
@@ -350,17 +359,17 @@
                                     <constraint firstAttribute="trailing" secondItem="pfo-uR-O0X" secondAttribute="trailing" constant="8" id="pi9-4y-mI4"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Timer Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ijz-2L-xrR">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Timer Title" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ijz-2L-xrR">
                                 <rect key="frame" x="8" y="36" width="398" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="xkh-ZV-ktI"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins Medium" pointSize="54"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="X42-Jx-e4g" firstAttribute="top" secondItem="Ijz-2L-xrR" secondAttribute="bottom" constant="24" id="3Oq-c6-mTS"/>
                             <constraint firstAttribute="trailing" secondItem="X42-Jx-e4g" secondAttribute="trailing" constant="8" id="A6s-lw-WIV"/>
@@ -374,7 +383,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c9m-OT-oHh"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="eHJ-OA-z7P">
+                    <navigationItem key="navigationItem" id="eHJ-OA-z7P">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="o3N-o0-ELs">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="NLX-Y1-8Po" id="Red-x0-4aj"/>
@@ -382,6 +391,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="agitationContainerView" destination="kHW-1h-7XB" id="0tj-kJ-dEj"/>
                         <outlet property="agitationSecondsLabel" destination="NMl-3u-9QE" id="R8m-UE-Tas"/>
                         <outlet property="agitationTimerSlider" destination="pfo-uR-O0X" id="nxJ-Mr-GDB"/>
                         <outlet property="minutePickerView" destination="JPQ-90-wSP" id="SfU-O9-cAT"/>
@@ -418,6 +428,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Thumb" width="25" height="25"/>
         <image name="download-to-storage-drive" width="47.5" height="44"/>
         <image name="menu" width="25" height="21"/>
         <image name="next-button" width="50" height="50"/>
