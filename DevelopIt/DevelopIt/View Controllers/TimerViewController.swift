@@ -53,6 +53,8 @@ class TimerViewController: UIViewController {
         
         iconContainerView.layer.cornerRadius = 15
         iconContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        secondsInAgitationTimer.text = ""
     }
     
     // MARK: - Navigation
@@ -109,11 +111,13 @@ class TimerViewController: UIViewController {
     
     @IBAction func nextButtonTapped(_ sender: Any) {
         
-        // TODO: - Disable button when at last cell
-
-        let indexPath = IndexPath(item: indexForRunningTimer, section: 0)
-        
-        loadFromCell(indexPath: indexPath)
+        if indexForRunningTimer == currentPreset?.timers?.count {
+            return
+        } else {
+            let indexPath = IndexPath(item: indexForRunningTimer, section: 0)
+            
+            loadFromCell(indexPath: indexPath)
+        }
     }
     
     @IBAction func createButtonTapped(_ sender: Any) {
@@ -285,9 +289,9 @@ extension TimerViewController {
         timerTitleLabel.text = timer.title
         
         guard let agitateSecondsDisplay = agitateTimer.string(from: agitateInterval) else { return }
-        let agitateDisplay = "Evey \(agitateSecondsDisplay)"
+        let agitateDisplay = "Every \(agitateSecondsDisplay)"
         
-        secondsInAgitationTimer.text = agitateDisplay
+        secondsInAgitationTimer.text = agitateDisplay == "Every zero seconds" ? "Never" : agitateDisplay
         
         timerController = TimerController(mainTimerDuration: Int(timer.minutesLength + timer.secondsLength),
                                           agitateTimerDuration: Int(timer.agitateTimer))
