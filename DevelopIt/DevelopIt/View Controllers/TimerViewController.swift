@@ -117,6 +117,7 @@ class TimerViewController: UIViewController {
             let indexPath = IndexPath(item: indexForRunningTimer, section: 0)
             
             loadFromCell(indexPath: indexPath)
+            
         }
     }
     
@@ -275,6 +276,8 @@ extension TimerViewController {
         let agitateTimer = DateComponentsFormatter()
         let timerInterval = TimeInterval(timer.minutesLength + timer.secondsLength)
         let agitateInterval = TimeInterval(timer.agitateTimer)
+        
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         
         indexForRunningTimer = indexPath.item + 1
         

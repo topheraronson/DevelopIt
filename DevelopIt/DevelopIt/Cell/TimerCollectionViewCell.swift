@@ -12,4 +12,19 @@ class TimerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var timerTitleLabel: UILabel!
     
+    override var isSelected: Bool {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    func updateViews() {
+        
+        if isSelected {
+            timerTitleLabel.textColor = .black
+        } else {
+            timerTitleLabel.textColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+        }
+    }
+    
 }
