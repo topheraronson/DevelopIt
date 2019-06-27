@@ -52,15 +52,26 @@
                                                     <color key="textColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAk-kq-vkn">
+                                                    <rect key="frame" x="25" y="25" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="GX9-ic-yea"/>
+                                                        <constraint firstAttribute="height" constant="50" id="PNy-aB-a0J"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="VAk-kq-vkn" firstAttribute="centerY" secondItem="g2f-Wk-81r" secondAttribute="centerY" id="1RT-Fi-NFN"/>
+                                            <constraint firstItem="VAk-kq-vkn" firstAttribute="centerX" secondItem="g2f-Wk-81r" secondAttribute="centerX" id="FGq-0d-MOI"/>
                                             <constraint firstItem="8LW-U7-oId" firstAttribute="leading" secondItem="g2f-Wk-81r" secondAttribute="leading" id="N4s-Kh-bZO"/>
                                             <constraint firstItem="8LW-U7-oId" firstAttribute="top" secondItem="g2f-Wk-81r" secondAttribute="top" constant="8" id="cm5-IR-tRM"/>
                                             <constraint firstAttribute="trailing" secondItem="8LW-U7-oId" secondAttribute="trailing" id="qvD-hm-GPT"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="animationContainerView" destination="VAk-kq-vkn" id="HNM-Lv-KfE"/>
                                             <outlet property="timerTitleLabel" destination="8LW-U7-oId" id="Z8s-bx-ocf"/>
                                         </connections>
                                     </collectionViewCell>

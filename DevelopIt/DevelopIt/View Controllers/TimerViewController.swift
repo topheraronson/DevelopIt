@@ -134,13 +134,26 @@ class TimerViewController: UIViewController {
         if timerController?.getTimerState() == TimerState.isStopped {
             timerController?.startTimer()
             startButton.setImage(#imageLiteral(resourceName: "pause-button"), for: .normal)
+            
+            guard let currentTimer = currentPreset?.timers?[indexForRunningTimer - 1] as? Timer else { return }
+            
+            let duration = Double(currentTimer.minutesLength + currentTimer.secondsLength)
+            print(duration)
+            let cell = collectionView.cellForItem(at: IndexPath(item: indexForRunningTimer - 1, section: 0)) as! TimerCollectionViewCell
+            cell.setAnimationState(duration: duration, animationState: .startAnimatin)
         } else if timerController?.getTimerState() == TimerState.isRunning {
             timerController?.pauseTimer()
             startButton.setImage(#imageLiteral(resourceName: "play-button"), for: .normal)
+            let cell = collectionView.cellForItem(at: IndexPath(item: indexForRunningTimer - 1, section: 0)) as! TimerCollectionViewCell
+            cell.setAnimationState(duration: nil, animationState: .pauseAnimation)
         } else if timerController?.getTimerState() == TimerState.isPaused {
             timerController?.resumeTimer()
             startButton.setImage(#imageLiteral(resourceName: "pause-button"), for: .normal)
+            let cell = collectionView.cellForItem(at: IndexPath(item: indexForRunningTimer - 1, section: 0)) as! TimerCollectionViewCell
+            cell.setAnimationState(duration: nil, animationState: .resumeAnimation)
         }
+        
+
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
@@ -150,9 +163,14 @@ class TimerViewController: UIViewController {
         } else {
             
             let indexPath = IndexPath(item: indexForRunningTimer, section: 0)
+            let previousIndexPath = IndexPath(item: indexForRunningTimer - 1, section: 0)
+            guard let cell = collectionView.cellForItem(at: previousIndexPath) as? TimerCollectionViewCell else { return }
+            cell.removeCircle()
             loadFromCell(indexPath: indexPath)
             
             startButton.setImage(#imageLiteral(resourceName: "play-button"), for: .normal)
+            
+            agitationProgressBar.progress = 0.0
         }
     }
     
@@ -186,8 +204,13 @@ extension TimerViewController: TimerControllerDelegate {
     
     func updateProgressBar(_ progress: Progress) {
         
-        let progressFloat = Float(progress.fractionCompleted)
-        agitationProgressBar.setProgress(progressFloat, animated: true)
+        if secondsInAgitationTimer.text == "Never" {
+            return
+        } else {
+            let progressFloat = Float(progress.fractionCompleted)
+            agitationProgressBar.setProgress(progressFloat, animated: true)
+        }
+
     }
     
     
@@ -239,6 +262,8 @@ extension TimerViewController: UICollectionViewDataSource {
         cell.timerTitleLabel.text = currentTimer.title
         
         cell.layer.cornerRadius = 8
+        
+        cell.createCircle()
         
         if isEditing {
             cell.shake()
