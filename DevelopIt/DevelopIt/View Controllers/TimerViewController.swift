@@ -36,7 +36,9 @@ class TimerViewController: UIViewController {
     // MARK: - Life Cycle Views
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationController?.navigationBar.barStyle = .black
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -129,33 +131,41 @@ class TimerViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        alertController = UIAlertController(title: "Save", message: "Name Your Preset", preferredStyle: .alert)
-        
-        alertController?.addTextField(configurationHandler: { [weak self] (textField) -> Void in
-            textField.placeholder = "Enter Preset Name"
+        if currentPreset?.title == currentPreset?.id?.uuidString {
             
-            textField.addTarget(self, action: #selector(self?.alertTextFieldDidChange(_:)), for: .editingChanged)
-        })
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+            alertController = UIAlertController(title: "Save", message: "Name Your Preset", preferredStyle: .alert)
             
-            guard let presetName = self?.alertController?.textFields?[0].text,
-            let currentPreset = self?.currentPreset
-            else { return }
+            alertController?.addTextField(configurationHandler: { [weak self] (textField) -> Void in
+                textField.placeholder = "Enter Preset Name"
+                
+                textField.addTarget(self, action: #selector(self?.alertTextFieldDidChange(_:)), for: .editingChanged)
+            })
             
-            self?.presetModelController.update(preset: currentPreset, with: presetName)
-            self?.presetModelController.save(preset: currentPreset, context: CoreDataStack.shared.mainContext)
+            let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+                
+                guard let presetName = self?.alertController?.textFields?[0].text,
+                let currentPreset = self?.currentPreset
+                else { return }
+                
+                self?.presetModelController.update(preset: currentPreset, with: presetName)
+                self?.presetModelController.save(preset: currentPreset, context: CoreDataStack.shared.mainContext)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            
+            saveAction.isEnabled = false
+            
+            alertController?.addAction(saveAction)
+            alertController?.addAction(cancelAction)
+            
+            present(alertController!, animated: true)
+        } else {
+            do {
+                try CoreDataStack.shared.mainContext.save()
+            } catch {
+                NSLog("Could not save preset")
+            }
         }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        saveAction.isEnabled = false
-        
-        alertController?.addAction(saveAction)
-        alertController?.addAction(cancelAction)
-        
-        present(alertController!, animated: true)
-        
     }
     
     @IBAction func buttonTouched(_ sender: UIButton) {
@@ -258,13 +268,15 @@ extension TimerViewController: AddTimerViewControllerDelegate {
 
 extension TimerViewController: MenuTableViewControllerDelegate {
     func load(preset: Preset) {
+
+        if let currentPreset = currentPreset, currentPreset.title == currentPreset.id?.uuidString {
+            presetModelController.delete(preset: currentPreset, context: CoreDataStack.shared.mainContext)
+        }
         
         currentPreset = preset
         collectionView.reloadData()
         loadFromCell(indexPath: IndexPath(item: 0, section: 0))
     }
-    
-    
 }
 
 extension TimerViewController {
