@@ -17,7 +17,6 @@ class TimerViewController: UIViewController {
     @IBOutlet var startButton: UIButton!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var secondsInAgitationTimer: UILabel!
-    @IBOutlet var timerForAgitation: UILabel!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var agitateContainerView: UIView!
     @IBOutlet var backgroundView: UIView!
@@ -28,28 +27,81 @@ class TimerViewController: UIViewController {
     var currentPreset: Preset?
     var presetModelController = PresetModelController()
     var timerModelController = TimerModelController()
+    
+    // Used for the next button. Keeps track of which cell was just selected.
     var indexForRunningTimer = 0
     
+    // Used to I can access the alertController text field during the naming of the preset to veryify input.
     var alertController: UIAlertController?
-    
     
     // MARK: - Life Cycle Views
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.barStyle = .black
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
         currentPreset = presetModelController.createPreset(context: CoreDataStack.shared.mainContext)
         
+        setUpView()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowAddTimer" {
+            
+            let destination = segue.destination as! AddTimerViewController
+            
+            destination.timerModelController = timerModelController
+            destination.delegate = self
+            
+        } else if segue.identifier == "ShowEditTimer" {
+            
+            if let indexPaths = collectionView.indexPathsForSelectedItems {
+                
+                let indexPath = indexPaths[0] as IndexPath
+                let destination = segue.destination as! AddTimerViewController
+                
+                destination.currentTimer = currentPreset?.timers?[indexPath.item] as? Timer
+                destination.indexPathForCurrentTimer = indexPath
+                destination.timerModelController = timerModelController
+                destination.delegate = self
+                
+            }
+        } else if segue.identifier == "ShowMenu" {
+            
+            let navController = segue.destination as! UINavigationController
+            let destination = navController.topViewController as! MenuTableViewController
+            destination.delegate = self
+            
+        }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        let cells = collectionView.visibleCells as! [TimerCollectionViewCell]
+
+        cells.forEach { cell in
+            if isEditing {
+                cell.shake()
+            } else {
+                cell.stopShaking()
+            }
+        }
+    }
+    
+    // MARK: - Private Methods
+    private func setUpView() {
+        
+        navigationController?.navigationBar.barStyle = .black
         navigationItem.rightBarButtonItem = editButtonItem
         
         agitateContainerView.backgroundColor = .white
         agitateContainerView.layer.cornerRadius = 10
         agitateContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-     
+        
         backgroundView.layer.cornerRadius = 10
         backgroundView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
@@ -59,49 +111,12 @@ class TimerViewController: UIViewController {
         secondsInAgitationTimer.text = ""
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "ShowAddTimer" {
-            let destination = segue.destination as! AddTimerViewController
-            destination.timerModelController = timerModelController
-            destination.delegate = self
-        } else if segue.identifier == "ShowEditTimer" {
-//            let destination = segue.destination as! AddTimerViewController
-//            destination.currentTimer = sender as? Timer
-            
-            if let indexPaths = collectionView.indexPathsForSelectedItems {
-                let indexPath = indexPaths[0] as IndexPath
-                let destination = segue.destination as! AddTimerViewController
-                
-                destination.currentTimer = currentPreset?.timers?[indexPath.item] as? Timer
-                destination.indexPathForCurrentTimer = indexPath
-                destination.timerModelController = timerModelController
-                destination.delegate = self
-            }
-        } else if segue.identifier == "ShowMenu" {
-            
-            let navController = segue.destination as! UINavigationController
-            let destination = navController.topViewController as! MenuTableViewController
-            destination.delegate = self
-        }
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        
-        let cells = collectionView.visibleCells as! [TimerCollectionViewCell]
-        
-        for index in 0 ..< cells.count {
-            if isEditing {
-                cells[index].shake()
-            } else {
-                cells[index].stopShaking()
-            }
-            
-        }
+    // MARK: - @objc Methods
+    @objc func alertTextFieldDidChange(_ sender: UITextField) {
+        alertController?.actions[0].isEnabled = sender.text!.count > 0
     }
 
+    // Create way of watching timer state and change image based on that
     // MARK: - IBActions
     @IBAction func restartButtonTapped(_ sender: Any) {
         timerController?.restartTimer()
@@ -127,55 +142,23 @@ class TimerViewController: UIViewController {
         if indexForRunningTimer == currentPreset?.timers?.count {
             return
         } else {
-            let indexPath = IndexPath(item: indexForRunningTimer, section: 0)
             
+            let indexPath = IndexPath(item: indexForRunningTimer, section: 0)
             loadFromCell(indexPath: indexPath)
             
+            startButton.setImage(#imageLiteral(resourceName: "play-button"), for: .normal)
         }
-    }
-    
-    @IBAction func createButtonTapped(_ sender: Any) {
-    }
-    
-    @IBAction func addButtonTapped(_ sender: Any) {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         if currentPreset?.title == currentPreset?.id?.uuidString {
             
-            alertController = UIAlertController(title: "Save", message: "Name Your Preset", preferredStyle: .alert)
+            createAndSaveNewPreset()
             
-            alertController?.addTextField(configurationHandler: { [weak self] (textField) -> Void in
-                textField.placeholder = "Enter Preset Name"
-                
-                textField.addTarget(self, action: #selector(self?.alertTextFieldDidChange(_:)), for: .editingChanged)
-            })
-            
-            let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
-                
-                guard let presetName = self?.alertController?.textFields?[0].text,
-                let currentPreset = self?.currentPreset
-                else { return }
-                
-                self?.presetModelController.update(preset: currentPreset, with: presetName)
-                self?.presetModelController.save(preset: currentPreset, context: CoreDataStack.shared.mainContext)
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-            
-            saveAction.isEnabled = false
-            
-            alertController?.addAction(saveAction)
-            alertController?.addAction(cancelAction)
-            
-            present(alertController!, animated: true)
         } else {
-            do {
-                try CoreDataStack.shared.mainContext.save()
-            } catch {
-                NSLog("Could not save preset")
-            }
+            
+            saveAlreadyCreatedPreset()
         }
     }
     
@@ -190,10 +173,6 @@ class TimerViewController: UIViewController {
             sender.transform = CGAffineTransform.identity
             })
         })
-    }
-    
-    @objc func alertTextFieldDidChange(_ sender: UITextField) {
-        alertController?.actions[0].isEnabled = sender.text!.count > 0
     }
 }
 
@@ -218,14 +197,12 @@ extension TimerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         timerController?.stopTimer()
-        // TODO: - Make enum for button and a didset to watch running state
+        
         startButton.setImage(#imageLiteral(resourceName: "play-button"), for: .normal)
         
         if isEditing {
-            
             editCell(indexPath: indexPath)
         } else {
-            
             loadFromCell(indexPath: indexPath)
         }
     }
@@ -240,7 +217,9 @@ extension TimerViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimerCell", for: indexPath) as? TimerCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimerCell",
+                                                            for: indexPath) as? TimerCollectionViewCell
+        else { return UICollectionViewCell() }
         
         guard let currentTimer = currentPreset?.timers?[indexPath.item] as? Timer else { return cell }
         
@@ -252,7 +231,6 @@ extension TimerViewController: UICollectionViewDataSource {
             cell.shake()
         }
         
-        
         return cell
     }
     
@@ -263,16 +241,12 @@ extension TimerViewController: AddTimerViewControllerDelegate {
     func addTimerToPreset(timer: Timer) {
         
         currentPreset?.addToTimers(timer)
-        
-        guard var count = currentPreset?.timers?.count else { return }
-        
-        if count > 0 {
-            count -= 1
+
+        if let count = currentPreset?.timers?.count, count > 0 {
+            let indexPath = IndexPath(item: count - 1, section: 0)
+            collectionView.insertItems(at: [indexPath])
+            loadFromCell(indexPath: IndexPath(item: 0, section: 0))
         }
-        
-        let indexPath = IndexPath(item: count, section: 0)
-        collectionView.insertItems(at: [indexPath])
-        loadFromCell(indexPath: IndexPath(item: 0, section: 0))
     }
     
     func updateTimer(indexPath: IndexPath, timer: Timer) {
@@ -361,5 +335,42 @@ extension TimerViewController {
         present(alertController, animated: true)
     }
     
+    func createAndSaveNewPreset() {
+        
+        alertController = UIAlertController(title: "Save", message: "Name Your Preset", preferredStyle: .alert)
+        
+        alertController?.addTextField(configurationHandler: { [weak self] (textField) -> Void in
+            textField.placeholder = "Enter Preset Name"
+            
+            textField.addTarget(self, action: #selector(self?.alertTextFieldDidChange(_:)), for: .editingChanged)
+        })
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+            
+            guard let presetName = self?.alertController?.textFields?[0].text,
+                let currentPreset = self?.currentPreset
+                else { return }
+            
+            self?.presetModelController.update(preset: currentPreset, with: presetName)
+            self?.presetModelController.save(preset: currentPreset, context: CoreDataStack.shared.mainContext)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        saveAction.isEnabled = false
+        
+        alertController?.addAction(saveAction)
+        alertController?.addAction(cancelAction)
+        
+        present(alertController!, animated: true)
+    }
     
+    func saveAlreadyCreatedPreset() {
+        
+        do {
+            try CoreDataStack.shared.mainContext.save()
+        } catch {
+            NSLog("Could not save preset")
+        }
+    }
 }
