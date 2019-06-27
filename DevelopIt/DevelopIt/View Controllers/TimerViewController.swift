@@ -246,6 +246,7 @@ extension TimerViewController: AddTimerViewControllerDelegate {
         
         let indexPath = IndexPath(item: count, section: 0)
         collectionView.insertItems(at: [indexPath])
+        loadFromCell(indexPath: IndexPath(item: 0, section: 0))
     }
     
     func updateTimer(indexPath: IndexPath, timer: Timer) {
@@ -258,7 +259,8 @@ extension TimerViewController: MenuTableViewControllerDelegate {
     func load(preset: Preset) {
         
         currentPreset = preset
-        collectionView.reloadData() 
+        collectionView.reloadData()
+        loadFromCell(indexPath: IndexPath(item: 0, section: 0))
     }
     
     
