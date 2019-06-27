@@ -89,6 +89,17 @@ class TimerViewController: UIViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        
+        let cells = collectionView.visibleCells as! [TimerCollectionViewCell]
+        
+        for index in 0 ..< cells.count {
+            if isEditing {
+                cells[index].shake()
+            } else {
+                cells[index].stopShaking()
+            }
+            
+        }
     }
 
     // MARK: - IBActions
@@ -237,6 +248,10 @@ extension TimerViewController: UICollectionViewDataSource {
         
         cell.layer.cornerRadius = 8
         
+        if isEditing {
+            cell.shake()
+        }
+        
         
         return cell
     }
@@ -345,4 +360,6 @@ extension TimerViewController {
         
         present(alertController, animated: true)
     }
+    
+    
 }
