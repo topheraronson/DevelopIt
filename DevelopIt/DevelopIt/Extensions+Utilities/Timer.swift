@@ -12,6 +12,7 @@ import AVFoundation
 
 protocol TimerControllerDelegate: class {
     func changeTimerDisplay(_ valueToDisplay: Int)
+    func updateProgressBar(_ progress: Progress)
 }
 
 class TimerController {
@@ -23,6 +24,8 @@ class TimerController {
     var alarmSound: AVAudioPlayer?
     var agitateCounter = -1
     
+    lazy var progress = Progress(totalUnitCount: Int64(agitateTimerDuration))
+    
     // MARK: - Private Properties
     private lazy var timer: AsyncTimer = {
 
@@ -32,6 +35,11 @@ class TimerController {
             block: { [weak self] value in
                 self?.delegate?.changeTimerDisplay(value)
                 self?.agitateCounter += 1
+                self?.progress.completedUnitCount = Int64(self?.agitateCounter ?? 0)
+                
+                if let progress = self?.progress{
+                    self?.delegate?.updateProgressBar(progress)
+                }
                 
                 if self?.agitateCounter == self?.agitateTimerDuration && self?.agitateCounter != 0 {
                     let systemSound: SystemSoundID = 1016

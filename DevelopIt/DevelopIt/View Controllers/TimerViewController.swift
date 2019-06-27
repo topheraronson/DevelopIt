@@ -21,6 +21,7 @@ class TimerViewController: UIViewController {
     @IBOutlet var agitateContainerView: UIView!
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var iconContainerView: UIView!
+    @IBOutlet var agitationProgressBar: UIProgressView!
     
     // MARK: - Properties
     var timerController: TimerController?
@@ -109,6 +110,11 @@ class TimerViewController: UIViewController {
         iconContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         secondsInAgitationTimer.text = ""
+        
+        agitationProgressBar.layer.cornerRadius = 8
+        agitationProgressBar.clipsToBounds = true
+        agitationProgressBar.layer.sublayers![1].cornerRadius = 8
+        agitationProgressBar.subviews[1].clipsToBounds = true
     }
     
     // MARK: - @objc Methods
@@ -177,6 +183,13 @@ class TimerViewController: UIViewController {
 }
 
 extension TimerViewController: TimerControllerDelegate {
+    
+    func updateProgressBar(_ progress: Progress) {
+        
+        let progressFloat = Float(progress.fractionCompleted)
+        agitationProgressBar.setProgress(progressFloat, animated: true)
+    }
+    
     
     func changeTimerDisplay(_ valueToDisplay: Int) {
         

@@ -88,13 +88,28 @@
                                         <color key="textColor" white="0.69133521889297056" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lBc-Gk-zVN">
+                                        <rect key="frame" x="8" y="103.5" width="350" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="nOq-7f-xzX"/>
+                                        </constraints>
+                                        <color key="progressTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="epo-Hu-iKH" firstAttribute="leading" secondItem="SjY-Ee-WSa" secondAttribute="leading" constant="8" id="4dI-Tk-8XC"/>
                                     <constraint firstAttribute="trailing" secondItem="epo-Hu-iKH" secondAttribute="trailing" constant="8" id="Dbt-fC-2UW"/>
                                     <constraint firstItem="uxQ-mW-TRo" firstAttribute="leading" secondItem="SjY-Ee-WSa" secondAttribute="leading" constant="8" id="Flx-Vi-LTq"/>
+                                    <constraint firstItem="lBc-Gk-zVN" firstAttribute="leading" secondItem="SjY-Ee-WSa" secondAttribute="leading" constant="8" id="I6z-38-pe9"/>
+                                    <constraint firstItem="lBc-Gk-zVN" firstAttribute="top" secondItem="epo-Hu-iKH" secondAttribute="bottom" constant="24" id="MIg-FA-RZh"/>
                                     <constraint firstItem="epo-Hu-iKH" firstAttribute="top" secondItem="uxQ-mW-TRo" secondAttribute="bottom" id="MaJ-cv-67R"/>
+                                    <constraint firstAttribute="trailing" secondItem="lBc-Gk-zVN" secondAttribute="trailing" constant="8" id="OeQ-sO-o8P"/>
                                     <constraint firstAttribute="trailing" secondItem="uxQ-mW-TRo" secondAttribute="trailing" constant="8" id="VtJ-85-mHS"/>
                                     <constraint firstItem="uxQ-mW-TRo" firstAttribute="top" secondItem="SjY-Ee-WSa" secondAttribute="top" constant="8" id="c6d-N7-B1l"/>
                                     <constraint firstAttribute="width" secondItem="SjY-Ee-WSa" secondAttribute="height" multiplier="183:73" id="i8a-bZ-ecX"/>
@@ -217,6 +232,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="agitateContainerView" destination="SjY-Ee-WSa" id="kKS-by-xMR"/>
+                        <outlet property="agitationProgressBar" destination="lBc-Gk-zVN" id="eLH-yM-sNe"/>
                         <outlet property="backgroundView" destination="NJv-Ac-1DE" id="R6T-JS-Eiw"/>
                         <outlet property="collectionView" destination="hDP-DP-pLw" id="yVP-Qn-alO"/>
                         <outlet property="iconContainerView" destination="fwh-bM-hw6" id="qSJ-7f-5bO"/>
@@ -332,7 +348,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="pfo-uR-O0X" customClass="SliderDesignable" customModule="DevelopIt" customModuleProvider="target">
-                                        <rect key="frame" x="6" y="80.5" width="354" height="25"/>
+                                        <rect key="frame" x="6" y="80.5" width="354" height="31"/>
                                         <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="Thumb"/>

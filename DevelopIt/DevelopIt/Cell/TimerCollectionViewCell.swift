@@ -18,6 +18,17 @@ class TimerCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func createCircle() {
+        
+        let shapeLayer = CAShapeLayer()
+        let path = UIBezierPath(arcCenter: self.center, radius: 100, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+        
+        shapeLayer.path = path.cgPath
+        
+        
+        self.layer.addSublayer(shapeLayer)
+    }
+    
     func updateViews() {
         
         if isSelected {
